@@ -1,11 +1,7 @@
 # Ramon Everardo Hernandez Hernandez | 02 february 2024
 #    Method of Finite-Difference for Linea Problems
 #                     Revisited
-#        Example 1 | Table 11.3 | Algorithm 11.3
-#
-#     Given the equation y'' = p(x) y' + q(x) y + r(x)
-#                          in the interval a <= t <= b
-# and the initial conditions y(a) = a_0 and y(b) = b_0
+#        Example with exact solution, and plotting
 
 import numpy as np
 

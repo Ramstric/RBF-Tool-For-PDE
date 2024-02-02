@@ -12,38 +12,34 @@ import numpy as np
 import pandas as pd
 
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 # mpl.use('Qt5Agg')
 
 # Inputs
-a, b = [-0.2, 0.05]  # Interval
-N = 24  # Number of spaces for discretization
-alpha, beta = [1.6353, 1.7043]  # Boundary conditions
+a, b = [1, 2]  # Interval
+N = 9  # Number of spaces for discretization
+alpha, beta = [1, 2]  # Boundary conditions
 
 
 # ----[ Considering the general form of y'' = p(x) y' + q(x) y + r(x) ]----
 def p(x):
-    return 4
+    return -2/x
 
 
 def q(x):
-    return 12
+    return 2/pow(x, 2)
 
 
 def r(x):
-    return 3*np.exp(5*x)
+    return np.sin(np.log(x))/pow(x, 2)
 # --------------------------------------------------------------------------
-
-
-# Exact solution function
-def y(x):
-    return np.exp(6*x) + np.exp(-2*x) - (3/7)*np.exp(5*x)
 
 
 def main():
     h = (b - a) / (N + 1)  # Step size
 
-    x = np.arange(a+h, b, h).round(4)  # Array of x points, from a to b, in h step size
+    x = np.arange(a+h, b, h).round(1)  # Array of x points, from a to b, in h step size
 
     n = N-1
 
@@ -72,23 +68,13 @@ def main():
     W = np.linalg.solve(A, B)  # Approximated numerical solutions
 
     # Exact numerical solutions
-    Y = np.zeros(shape=N)
-    for i in range(N):
-        Y[i] = y(x[i])
+    y = np.zeros(shape=N)
+    for i in range(1, N - 1):
+        y[i] = i
 
-    Table_1 = pd.DataFrame(data=[x, W, Y], index=['x', 'w', 'y']).T
-    print(Table_1)
+    Table_1 = pd.DataFrame(data=[x.round(2), W, y], index=['x', 'w', 'y']).T
 
-    # Plotting exact solution
-    x_plot = np.linspace(a, b, num=50)
-    y_plot = np.zeros(np.size(x_plot))
-
-    for i in range(x_plot.size):
-        y_plot[i] = y(x_plot[i])
-
-    plt.scatter(x, W)                     # Approximate solution scatter
-    plt.plot(x_plot, y_plot)        # Exact solution plot
-    plt.show()
+    print(W)
 
 
 main()
