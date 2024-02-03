@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="RBF Interpolation and revision of previous programs">
-      <change afterPath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation 3D (Meshgrid).py" afterDir="false" />
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="RBF Interpolation on 3D plane">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation 3D (Meshgrid).py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation 3D (Meshgrid).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +140,7 @@
       <workItem from="1706391951589" duration="494000" />
       <workItem from="1706848852157" duration="151000" />
       <workItem from="1706849109415" duration="12934000" />
-      <workItem from="1706862177981" duration="27553000" />
+      <workItem from="1706862177981" duration="30418000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -151,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706916012923</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="RBF Interpolation on 3D plane">
+      <option name="closed" value="true" />
+      <created>1706933761627</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706933761627</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +177,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RBF Interpolation and revision of previous programs" />
-    <option name="LAST_COMMIT_MESSAGE" value="RBF Interpolation and revision of previous programs" />
+    <MESSAGE value="RBF Interpolation on 3D plane" />
+    <option name="LAST_COMMIT_MESSAGE" value="RBF Interpolation on 3D plane" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -192,7 +200,7 @@
     <SUITE FILE_PATH="coverage/pythonCIC$Euler_2_Inequality.coverage" NAME="Euler_2 Inequality Coverage Results" MODIFIED="1697751213987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
     <SUITE FILE_PATH="coverage/pythonCIC$Finite_Dif_1.coverage" NAME="Finite Dif 1 Coverage Results" MODIFIED="1699653097133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FiniteDifferences" />
     <SUITE FILE_PATH="coverage/pythonCIC$Euler_1.coverage" NAME="Euler_1 Coverage Results" MODIFIED="1697730126717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
-    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1706933484683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1706937669202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonCIC$Runge_Kutta_4th.coverage" NAME="Runge-Kutta 4th Coverage Results" MODIFIED="1699653092688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Runge-Kutta" />
   </component>
 </project>

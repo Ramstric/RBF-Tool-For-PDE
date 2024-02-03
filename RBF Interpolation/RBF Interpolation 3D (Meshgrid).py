@@ -4,7 +4,8 @@ import numpy as np
 from matplotlib import cm
 import matplotlib as mpl
 
-mpl.use('Qt5Agg')
+#mpl.use('Qt5Agg')
+plt.rcParams['figure.figsize'] = (10, 10)
 
 
 def kernel(S, b):
@@ -52,7 +53,7 @@ for idx in range(Z_RBF.size):
 
 # Variables
 size = Z.size
-b = 20                  # El valor de la base debe de elegirse de acuerdo al error de la interpolación
+b = 25                  # El valor de la base debe de elegirse de acuerdo al error de la interpolación
 
 # Inicio del metodo para RBF
 mainMatrix = np.empty(shape=(size, size))
@@ -86,16 +87,16 @@ def RBF(s):
 for idx in range(S_RBF.shape[0]):
     Z_RBF[idx] = RBF(S_RBF[idx])
 
-Z_RBF = np.array_split(Z_RBF, 5)
+Z_RBF = np.array_split(Z_RBF, X_RBF.shape[0])
 
-# Plot the surfacsurf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+Z_RBF = np.stack(Z_RBF, axis=0)
+
+
+# Plot the surface
 ax = plt.axes(projection ="3d")
 
-#scat = ax.scatter3D(X, Y, Z, s=25)
+surf = ax.plot_surface(X_RBF, Y_RBF, Z_RBF, cmap=cm.plasma, linewidth=0, antialiased=False, alpha=0.2, zorder=1)
+scat = ax.scatter3D(X, Y, Z, s=25, zorder=4, c=Z, cmap=cm.plasma_r)
 #scat = ax.scatter3D(X_RBF, Y_RBF, Z_RBF, s=5, c="red")
-surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
-                       linewidth=0, antialiased=False)
-#scat = ax.scatter3D(X, Y, Z, s=20)
-
 
 plt.show()
