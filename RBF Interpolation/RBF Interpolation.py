@@ -50,7 +50,6 @@ for row in range(0, size):
 mainMatrix = np.linalg.inv(mainMatrix)              # Matriz inversa
 
 yMatrix = np.vstack(y_0)                            # Matriz de Y
-
 fMatrix = np.empty(shape=size, dtype=np.single)     # Matriz evaluada
 
 
