@@ -35,11 +35,9 @@ x_I = np.array([-5, -4.5, -4, -3.75, -3.5, -3, -2.75, -2.5, -1.5, -1.25,
 # Boundary nodes
 x_B = np.array([-5.74, 2.12])
 
-# Making the Vector X (Boundary + Interior nodes)
-x_0 = np.block([x_B, x_I])
+x_0 = np.block([x_B, x_I])                              # Making the Vector X (Boundary + Interior nodes)
 
-# Prepping vector for Y
-y_f = np.zeros(x_I.size)
+y_f = np.zeros(x_I.size)                                # Prepping vector for Y
 
 # Evaluation PDE function on the Interior nodes (X_I)
 for index in range(0, x_I.size):
@@ -48,8 +46,7 @@ for index in range(0, x_I.size):
 # Boundary conditions
 y_g = np.array([-0.023, 2.23])
 
-# Making the Vector Y (Function values + Boundary conditions)
-Y_Vector = np.block([y_g, y_f]).reshape((-1, 1))
+Y_Vector = np.block([y_g, y_f]).reshape((-1, 1))        # Making the Vector Y (Function values + Boundary conditions)
 
 # Base value must be chosen according to interpolation error
 e = 24
@@ -71,9 +68,9 @@ for row in range(0, x_I.size):
 
 A_Matrix = np.vstack((Block_1, Block_2))
 
-A_Matrix = np.linalg.inv(A_Matrix)              # Calculate inverse of Main matrix (A)^-1
+A_Matrix = np.linalg.inv(A_Matrix)                      # Calculate inverse of Main matrix (A)^-1
 
-f_Matrix = np.zeros(shape=size, dtype=np.single)     # Prepping vector for evaluated Kernel
+f_Matrix = np.zeros(shape=size, dtype=np.single)        # Prepping vector for evaluated Kernel
 
 
 # Interpolated function
