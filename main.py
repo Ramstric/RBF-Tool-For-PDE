@@ -11,15 +11,15 @@ import matplotlib.pyplot as plt
 
 
 # MQuad Kernel
-def kernel(r, e):
-    arg = pow((16 / e) * r, 2)
+def kernel(r, epsilon):
+    arg = pow((16 / epsilon) * r, 2)
     return np.sqrt(1 + arg)
 
 
 # Derivative MQuad Kernel
-def D_kernel(r, e):
-    arg_bottom = pow((16/e) * r, 2)
-    arg_superior = pow(16/e, 2) * r
+def D_kernel(r, epsilon):
+    arg_bottom = pow((16 / epsilon) * r, 2)
+    arg_superior = pow(16 / epsilon, 2) * r
     return arg_superior / np.sqrt(1 + arg_bottom)
 
 
@@ -49,12 +49,12 @@ for index in range(0, x_I.size):
 y_g = np.array([-0.023, 2.23])
 
 # Making the Vector Y (Function values + Boundary conditions)
-y_0 = np.block([y_g, y_f])
-
-size = x_0.size
+Y_Vector = np.block([y_g, y_f]).reshape((-1, 1))
 
 # Base value must be chosen according to interpolation error
-b = 24
+e = 24
+
+size = x_0.size
 
 # ---------------------[ Start of Asymmetric Collocation Method ]---------------------
 
@@ -63,41 +63,40 @@ Block_1, Block_2 = np.zeros(shape=(x_B.size, size)), np.zeros(shape=(x_I.size, s
 
 for row in range(0, x_B.size):
     for col in range(0, size):
-        Block_1[row, col] = kernel(x_0[row] - x_0[col], b)
+        Block_1[row, col] = kernel(x_0[row] - x_0[col], e)
 
 for row in range(0, x_I.size):
     for col in range(0, size):
-        Block_2[row, col] = 2*D_kernel(x_0[row+x_B.size] - x_0[col], b) - kernel(x_0[row+x_B.size] - x_0[col], b)
+        Block_2[row, col] = 2 * D_kernel(x_0[row + x_B.size] - x_0[col], e) - kernel(x_0[row + x_B.size] - x_0[col], e)
 
-mainMatrix = np.vstack((Block_1, Block_2))
+A_Matrix = np.vstack((Block_1, Block_2))
 
-mainMatrix = np.linalg.inv(mainMatrix)              # Calculate inverse of Main matrix (A)^-1
+A_Matrix = np.linalg.inv(A_Matrix)              # Calculate inverse of Main matrix (A)^-1
 
-yMatrix = np.vstack(y_0)                            # Set vector Y in vertical
-fMatrix = np.empty(shape=size, dtype=np.single)     # Prepping vector for evaluated Kernet
+f_Matrix = np.zeros(shape=size, dtype=np.single)     # Prepping vector for evaluated Kernel
 
 
 # Interpolated function
 def RBF(x):
     for cols in range(size):
-        fMatrix[cols] = kernel(x - x_0[cols], b)
+        f_Matrix[cols] = kernel(x - x_0[cols], e)
 
-    temp = fMatrix @ mainMatrix
-    temp = temp @ yMatrix
+    temp = f_Matrix @ A_Matrix
+    temp = temp @ Y_Vector
 
     return temp
 
 
 # Interpolated data
 x_1 = np.linspace(-5, 2, num=70)
-y_RBF = np.empty(x_1.size)
+y_RBF = np.zeros(x_1.size)
 
-for idx in range(x_1.size):
-    y_RBF[idx] = RBF(x_1[idx])
+for node in range(x_1.size):
+    y_RBF[node] = RBF(x_1[node])
 
 # --------------------------------[ Tables ]--------------------------------
 
-Table_Original = pd.DataFrame(data=[x_0, y_0], index=['X', 'Y']).T
+Table_Original = pd.DataFrame(data=[x_0, Y_Vector.reshape(-1, 1).squeeze()], index=['X', 'Y']).T
 Table_Interpolated = pd.DataFrame(data=[x_1, y_RBF], index=['X', 'Y']).T
 
 # -------------------------------[ Plotting ]-------------------------------
