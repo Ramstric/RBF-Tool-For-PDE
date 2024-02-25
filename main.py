@@ -1,6 +1,6 @@
 # Ramon Everardo Hernandez Hernandez | 25 february 2024
 #        Radial Basis Function Interpolation for PDE
-#                   Meshfree method
+#                   Mesh-free method
 
 import numpy as np
 
@@ -16,7 +16,7 @@ def kernel(r, e):
     return np.sqrt(1 + arg)
 
 
-# Derivated MQuad Kernel
+# Derivative MQuad Kernel
 def D_kernel(r, e):
     arg_bottom = pow((16/e) * r, 2)
     arg_superior = pow(16/e, 2) * r
@@ -29,7 +29,8 @@ def f(x):
 
 
 # Interior nodes
-x_I = np.array([-5, -4.5, -4, -3.75, -3.5, -3, -2.75, -2.5, -1.5, -1.25, -0.5, -0.25, 0, 0.1, 0.5, 0.85, 1.0, 1.25, 1.5, 1.75])
+x_I = np.array([-5, -4.5, -4, -3.75, -3.5, -3, -2.75, -2.5, -1.5, -1.25,
+                -0.5, -0.25, 0, 0.1, 0.5, 0.85, 1.0, 1.25, 1.5, 1.75])
 
 # Boundary nodes
 x_B = np.array([-5.74, 2.12])
@@ -47,15 +48,15 @@ for index in range(0, x_I.size):
 # Boundary conditions
 y_g = np.array([-0.023, 2.23])
 
-# Making the Vector Y (Function values + Boundary condtions)
+# Making the Vector Y (Function values + Boundary conditions)
 y_0 = np.block([y_g, y_f])
 
 size = x_0.size
 
-# El valor de la base debe de elegirse de acuerdo al error de la interpolación
+# Base value must be chosen according to interpolation error
 b = 24
 
-# ---------------------[ Inicio del metodo para RBF ]---------------------
+# ---------------------[ Start of Asymmetric Collocation Method ]---------------------
 
 # Prepping blocks for Main matrix (A)
 Block_1, Block_2 = np.zeros(shape=(x_B.size, size)), np.zeros(shape=(x_I.size, size))
@@ -68,7 +69,7 @@ for row in range(0, x_I.size):
     for col in range(0, size):
         Block_2[row, col] = 2*D_kernel(x_0[row+x_B.size] - x_0[col], b) - kernel(x_0[row+x_B.size] - x_0[col], b)
 
-mainMatrix = np.block([[Block_1], [Block_2]])
+mainMatrix = np.vstack((Block_1, Block_2))
 
 mainMatrix = np.linalg.inv(mainMatrix)              # Calculate inverse of Main matrix (A)^-1
 
@@ -76,10 +77,10 @@ yMatrix = np.vstack(y_0)                            # Set vector Y in vertical
 fMatrix = np.empty(shape=size, dtype=np.single)     # Prepping vector for evaluated Kernet
 
 
-# Funcion interpolada
+# Interpolated function
 def RBF(x):
-    for col in range(size):
-        fMatrix[col] = kernel(x - x_0[col], b)
+    for cols in range(size):
+        fMatrix[cols] = kernel(x - x_0[cols], b)
 
     temp = fMatrix @ mainMatrix
     temp = temp @ yMatrix
@@ -87,7 +88,7 @@ def RBF(x):
     return temp
 
 
-# Datos interpolados
+# Interpolated data
 x_1 = np.linspace(-5, 2, num=70)
 y_RBF = np.empty(x_1.size)
 

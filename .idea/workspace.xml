@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="More touches on 3D RBF Interpolation">
-      <change afterPath="$PROJECT_DIR$/RBF Interpolation/RBF ODE (Colocación Asimétrica sin Def. Positiva).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF Interpolation/RBF ODE (Colocación Simétrica).py" afterDir="false" />
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Work on RBFs for PDEs. Fully done for Asymmetric collocation, and working on multivariable for Asymmetric">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +155,7 @@
       <workItem from="1708819123713" duration="7568000" />
       <workItem from="1708833380356" duration="10871000" />
       <workItem from="1708849111165" duration="476000" />
-      <workItem from="1708885074619" duration="1228000" />
+      <workItem from="1708885074619" duration="2128000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -183,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706938764630</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Work on RBFs for PDEs. Fully done for Asymmetric collocation, and working on multivariable for Asymmetric">
+      <option name="closed" value="true" />
+      <created>1708888366902</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708888366902</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +210,8 @@
     <MESSAGE value="RBF Interpolation and revision of previous programs" />
     <MESSAGE value="RBF Interpolation on 3D plane" />
     <MESSAGE value="More touches on 3D RBF Interpolation" />
-    <option name="LAST_COMMIT_MESSAGE" value="More touches on 3D RBF Interpolation" />
+    <MESSAGE value="Work on RBFs for PDEs. Fully done for Asymmetric collocation, and working on multivariable for Asymmetric" />
+    <option name="LAST_COMMIT_MESSAGE" value="Work on RBFs for PDEs. Fully done for Asymmetric collocation, and working on multivariable for Asymmetric" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
