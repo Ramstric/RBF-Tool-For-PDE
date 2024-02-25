@@ -1,104 +1,119 @@
-import matplotlib.pyplot as plt
+# Ramon Everardo Hernandez Hernandez | 25 february 2024
+#        Radial Basis Function Interpolation for PDE
+#                   Meshfree method
+
 import numpy as np
 
-from matplotlib import cm
-import matplotlib as mpl
+import pandas as pd
 
-#mpl.use('Qt5Agg')
-plt.rcParams['figure.figsize'] = (10, 10)
-
-
-def kernel(S, b):
-    arg = pow((4/b) * (np.sqrt(pow(S[0], 2)+pow(S[1], 2))), 2)
-    return np.exp(-arg)
+import matplotlib.pyplot as plt
+# mpl.use('Qt5Agg')
 
 
-# Inverse quad Kernel
-def kernel_2(S, b):
-    arg = pow((16/b) * (np.sqrt(pow(S[0], 2)+pow(S[1], 2))), 2)
-    return 1/(1+arg)
+# MQuad Kernel
+def kernel(r, e):
+    arg = pow((16 / e) * r, 2)
+    return np.sqrt(1 + arg)
 
 
-# Make data.
-X = np.arange(-5, 5, 1)
-Y = np.arange(-5, 5, 1)
-
-S = np.zeros(shape=(X.size * Y.size, 2))
-
-X, Y = np.meshgrid(X, Y)
-R = np.sqrt(X**2 + Y**2)
-Z = np.sin(R)
-
-zMatrix = np.stack(Z.ravel())
-
-positions = np.stack([X.ravel(), Y.ravel()])
-for idx in range(Z.size):
-    S[idx, 0] = positions[0, idx]
-    S[idx, 1] = positions[1, idx]
-
-# Make allocation for RBF.
-X_RBF = np.arange(-5, 5, 0.2)
-Y_RBF = np.arange(-5, 5, 0.2)
-
-S_RBF = np.zeros(shape=(X_RBF.size * Y_RBF.size, 2))
-Z_RBF = np.zeros(shape=X_RBF.size * Y_RBF.size)
-
-X_RBF, Y_RBF = np.meshgrid(X_RBF, Y_RBF)
-
-positions = np.stack([X_RBF.ravel(), Y_RBF.ravel()])
-for idx in range(Z_RBF.size):
-    S_RBF[idx, 0] = positions[0, idx]
-    S_RBF[idx, 1] = positions[1, idx]
+# Derivated MQuad Kernel
+def D_kernel(r, e):
+    arg_bottom = pow((16/e) * r, 2)
+    arg_superior = pow(16/e, 2) * r
+    return arg_superior / np.sqrt(1 + arg_bottom)
 
 
-# Variables
-size = Z.size
-b = 25                  # El valor de la base debe de elegirse de acuerdo al error de la interpolación
-
-# Inicio del metodo para RBF
-mainMatrix = np.empty(shape=(size, size))
-
-for row in range(size):
-    for col in range(size):
-        mainMatrix[row, col] = kernel_2(S[row] - S[col], b)
+# Function of PDE
+def f(x):
+    return 4*np.sin(3*x)
 
 
-mainMatrix = np.linalg.inv(mainMatrix)              # Matriz inversa
+# Interior nodes
+x_I = np.array([-5, -4.5, -4, -3.75, -3.5, -3, -2.75, -2.5, -1.5, -1.25, -0.5, -0.25, 0, 0.1, 0.5, 0.85, 1.0, 1.25, 1.5, 1.75])
 
-zMatrix = np.vstack(zMatrix)                            # Matriz de Z
+# Boundary nodes
+x_B = np.array([-5.74, 2.12])
 
-fMatrix = np.empty(shape=size, dtype=np.single)     # Matriz evaluada
+# Making the Vector X (Boundary + Interior nodes)
+x_0 = np.block([x_B, x_I])
+
+# Prepping vector for Y
+y_f = np.zeros(x_I.size)
+
+# Evaluation PDE function on the Interior nodes (X_I)
+for index in range(0, x_I.size):
+    y_f[index] = f(x_I[index])
+
+# Boundary conditions
+y_g = np.array([-0.023, 2.23])
+
+# Making the Vector Y (Function values + Boundary condtions)
+y_0 = np.block([y_g, y_f])
+
+size = x_0.size
+
+# El valor de la base debe de elegirse de acuerdo al error de la interpolación
+b = 24
+
+# ---------------------[ Inicio del metodo para RBF ]---------------------
+
+# Prepping blocks for Main matrix (A)
+Block_1, Block_2 = np.zeros(shape=(x_B.size, size)), np.zeros(shape=(x_I.size, size))
+
+for row in range(0, x_B.size):
+    for col in range(0, size):
+        Block_1[row, col] = kernel(x_0[row] - x_0[col], b)
+
+for row in range(0, x_I.size):
+    for col in range(0, size):
+        Block_2[row, col] = 2*D_kernel(x_0[row+x_B.size] - x_0[col], b) - kernel(x_0[row+x_B.size] - x_0[col], b)
+
+mainMatrix = np.block([[Block_1], [Block_2]])
+
+mainMatrix = np.linalg.inv(mainMatrix)              # Calculate inverse of Main matrix (A)^-1
+
+yMatrix = np.vstack(y_0)                            # Set vector Y in vertical
+fMatrix = np.empty(shape=size, dtype=np.single)     # Prepping vector for evaluated Kernet
 
 
 # Funcion interpolada
-def RBF(s):
+def RBF(x):
     for col in range(size):
-        fMatrix[col] = kernel_2(s - S[col], b)
+        fMatrix[col] = kernel(x - x_0[col], b)
 
     temp = fMatrix @ mainMatrix
-
-    temp = temp @ zMatrix
+    temp = temp @ yMatrix
 
     return temp
 
 
 # Datos interpolados
-#x_1 = np.linspace(0, 3.683, num=100)
-for idx in range(S_RBF.shape[0]):
-    Z_RBF[idx] = RBF(S_RBF[idx])
+x_1 = np.linspace(-5, 2, num=70)
+y_RBF = np.empty(x_1.size)
 
-Z_RBF = np.array_split(Z_RBF, X_RBF.shape[0])
+for idx in range(x_1.size):
+    y_RBF[idx] = RBF(x_1[idx])
 
-Z_RBF = np.stack(Z_RBF, axis=0)
+# --------------------------------[ Tables ]--------------------------------
 
+Table_Original = pd.DataFrame(data=[x_0, y_0], index=['X', 'Y']).T
+Table_Interpolated = pd.DataFrame(data=[x_1, y_RBF], index=['X', 'Y']).T
 
-# Plot the surface
-ax = plt.axes(projection ="3d")
+# -------------------------------[ Plotting ]-------------------------------
 
-surf = ax.plot_surface(X_RBF, Y_RBF, Z_RBF, cmap=cm.plasma, linewidth=0, antialiased=False, alpha=0.2, zorder=1)
-scat = ax.scatter3D(X, Y, Z, s=25, zorder=4, c=Z, cmap=cm.plasma_r)
-#scat = ax.scatter3D(X_RBF, Y_RBF, Z_RBF, s=5, c="red")
+plt.plot(x_1, y_RBF, linewidth=1, color="dodgerblue")       # Interpolated plot
+#plt.scatter(x_1, y_RBF, s=5, color="crimson", zorder=2)           # Interpolated scatter
+#plt.scatter(x_0, y_0, s=5, color="crimson", zorder=2)             # Original points scatter
 
+# Configure plot
+ax = plt.gca()
+ax.set_facecolor('lavender')
 
+# Show XY axis
+ax.axhline(y=0, color='dimgray', linewidth=1)
+ax.axvline(x=0, color='dimgray', linewidth=1)
+
+# Set plot grid color
+plt.grid(c="white")
 
 plt.show()

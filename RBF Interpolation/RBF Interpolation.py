@@ -26,14 +26,19 @@ def kernel_2(x, b):
     return 1/(1+arg)
 
 
+def kernel_3(r, e):
+    arg = pow((16 / e) * r, 2)
+    return np.sqrt(1 + arg)
+
+
 # Datos originales o muestra
 # x_0 = np.linspace(-10, 10, num=20).round(4)
 # y_0 = np.sin(0.2*pow(x_0,2)).round(4)
 x_0 = np.array([0, 0.054, 0.259, 0.350, 0.482, 0.624, 0.679, 0.770, 1.037, 1.333, 1.505,
-            1.688, 1.933, 2.283, 2.346, 2.773, 3.000, 3.106, 3.336, 3.504, 3.600, 3.683])
+            1.688, 1.933, 2.283])
 
 y_0 = np.array([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5.428, 5.428,
-            4.141, -0.326, -2.220, -2.080, 2.831, 2.714, 1.709, 0.492,  0,     0, 0.516])
+            4.141, -0.326, -2.220])
 
 # Variables
 size = x_0.size
@@ -44,7 +49,7 @@ mainMatrix = np.empty(shape=(size, size))
 
 for row in range(0, size):
     for col in range(0, size):
-        mainMatrix[row, col] = kernel_2(x_0[row] - x_0[col], b)
+        mainMatrix[row, col] = kernel_3(x_0[row] - x_0[col], b)
 
 
 mainMatrix = np.linalg.inv(mainMatrix)              # Matriz inversa
@@ -56,7 +61,7 @@ fMatrix = np.empty(shape=size, dtype=np.single)     # Matriz evaluada
 # Funcion interpolada
 def RBF(x):
     for col in range(size):
-        fMatrix[col] = kernel_2(x - x_0[col], b)
+        fMatrix[col] = kernel_3(x - x_0[col], b)
 
     temp = fMatrix @ mainMatrix
     temp = temp @ yMatrix
