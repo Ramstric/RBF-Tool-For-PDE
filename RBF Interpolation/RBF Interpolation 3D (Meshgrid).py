@@ -9,13 +9,13 @@ plt.rcParams['figure.figsize'] = (10, 10)
 
 
 def kernel(S, b):
-    arg = pow((4/b) * (np.sqrt(pow(S[0], 2)+pow(S[1], 2))), 2)
+    arg = pow((4/b) * np.linalg.norm(S), 2)
     return np.exp(-arg)
 
 
 # Inverse quad Kernel
 def kernel_2(S, b):
-    arg = pow((16/b) * (np.sqrt(pow(S[0], 2)+pow(S[1], 2))), 2)
+    arg = pow((16/b) * np.linalg.norm(S), 2)
     return 1/(1+arg)
 
 
