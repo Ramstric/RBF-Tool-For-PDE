@@ -74,8 +74,8 @@ for idx in range(Z.size):
     S[idx, 1] = positions[1, idx]
 
 # Make allocation for RBF.
-X_RBF = np.arange(-3, 3, 0.05)
-Y_RBF = np.arange(-3, 3, 0.05)
+X_RBF = np.arange(-3, 3, 0.1)
+Y_RBF = np.arange(-3, 3, 0.1)
 
 S_RBF = np.zeros(shape=(X_RBF.size * Y_RBF.size, 2))
 Z_RBF = np.zeros(shape=X_RBF.size * Y_RBF.size)
