@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="RBF for PDEs!!! Big progress today!">
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Ripple function on main!">
+      <change afterPath="$PROJECT_DIR$/RBF Interpolation/RBF PDE.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -17,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -156,7 +158,11 @@
       <workItem from="1708849111165" duration="476000" />
       <workItem from="1708885074619" duration="6335000" />
       <workItem from="1708894818361" duration="13968000" />
-      <workItem from="1708917027937" duration="1156000" />
+      <workItem from="1708917027937" duration="2594000" />
+      <workItem from="1709002689145" duration="6102000" />
+      <workItem from="1709011899769" duration="146000" />
+      <workItem from="1709260091465" duration="7000" />
+      <workItem from="1709271721565" duration="381000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -222,7 +228,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708915133068</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Polishing &amp; more!">
+      <option name="closed" value="true" />
+      <created>1708924777124</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708924777124</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Ripple function on main!">
+      <option name="closed" value="true" />
+      <created>1709011447074</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709011447074</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,20 +268,17 @@
     <MESSAGE value="Work on RBFs for PDEs. Fully done for Asymmetric collocation, and working on multivariable for Asymmetric" />
     <MESSAGE value="Polishing..." />
     <MESSAGE value="RBF for PDEs!!! Big progress today!" />
-    <option name="LAST_COMMIT_MESSAGE" value="RBF for PDEs!!! Big progress today!" />
+    <MESSAGE value="Polishing &amp; more!" />
+    <MESSAGE value="Ripple function on main!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ripple function on main!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/RBF Interpolation/RBF PDE (Colocación Asímetrica sin Def. Positiva).py</url>
-          <line>135</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
           <line>128</line>
-          <option name="timeStamp" value="17" />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -280,7 +299,7 @@
     <SUITE FILE_PATH="coverage/pythonCIC$Euler_2_Inequality.coverage" NAME="Euler_2 Inequality Coverage Results" MODIFIED="1697751213987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
     <SUITE FILE_PATH="coverage/pythonCIC$Finite_Dif_1.coverage" NAME="Finite Dif 1 Coverage Results" MODIFIED="1699653097133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FiniteDifferences" />
     <SUITE FILE_PATH="coverage/pythonCIC$Euler_1.coverage" NAME="Euler_1 Coverage Results" MODIFIED="1697730126717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
-    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1708918090716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1709271807390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation.coverage" NAME="RBF Interpolation Coverage Results" MODIFIED="1708823343805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF Interpolation" />
     <SUITE FILE_PATH="coverage/pythonCIC$Runge_Kutta_4th.coverage" NAME="Runge-Kutta 4th Coverage Results" MODIFIED="1699653092688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Runge-Kutta" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_PDE__Colocación_Asímetrica_sin_Def__Positiva_.coverage" NAME="RBF PDE (Colocación Asímetrica sin Def. Positiva) Coverage Results" MODIFIED="1708914600569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF Interpolation" />
