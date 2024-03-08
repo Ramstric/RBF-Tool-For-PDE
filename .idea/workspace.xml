@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Ripple function on main!">
-      <change afterPath="$PROJECT_DIR$/RBF Interpolation/RBF PDE.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF PDE.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +25,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Ramstric"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4e1cdbc3-0a10-425f-a2f1-719906501178" />
+        <option name="url" value="https://github.com/Ramstric/pythonCIC.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -163,6 +178,14 @@
       <workItem from="1709011899769" duration="146000" />
       <workItem from="1709260091465" duration="7000" />
       <workItem from="1709271721565" duration="381000" />
+      <workItem from="1709420975438" duration="124000" />
+      <workItem from="1709421400869" duration="1208000" />
+      <workItem from="1709537095159" duration="176000" />
+      <workItem from="1709537287625" duration="28000" />
+      <workItem from="1709616576916" duration="87000" />
+      <workItem from="1709858242335" duration="57000" />
+      <workItem from="1709858342754" duration="106000" />
+      <workItem from="1709874004644" duration="4633000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -244,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709011447074</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ripple function on main!">
+      <option name="closed" value="true" />
+      <created>1709421092874</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1709421092874</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

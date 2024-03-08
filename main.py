@@ -114,7 +114,6 @@ zMatrix = np.vstack(zMatrix)                            # Matriz de Z
 
 fMatrix = np.empty(shape=size, dtype=np.single)     # Matriz evaluada
 
-
 # Funcion interpolada
 def RBF(s):
     for col in range(size):
