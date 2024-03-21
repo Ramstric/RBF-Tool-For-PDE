@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Ripple function on main!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/RBF Interpolation/RBF Interpolation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF Interpolation/RBF PDE.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="RBF Interpolation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,7 +180,7 @@
       <workItem from="1709616576916" duration="87000" />
       <workItem from="1709858242335" duration="57000" />
       <workItem from="1709858342754" duration="106000" />
-      <workItem from="1709874004644" duration="4633000" />
+      <workItem from="1709874004644" duration="4654000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -275,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709421092874</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="RBF Interpolation">
+      <option name="closed" value="true" />
+      <created>1709903455073</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1709903455073</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +304,8 @@
     <MESSAGE value="RBF for PDEs!!! Big progress today!" />
     <MESSAGE value="Polishing &amp; more!" />
     <MESSAGE value="Ripple function on main!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ripple function on main!" />
+    <MESSAGE value="RBF Interpolation" />
+    <option name="LAST_COMMIT_MESSAGE" value="RBF Interpolation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
