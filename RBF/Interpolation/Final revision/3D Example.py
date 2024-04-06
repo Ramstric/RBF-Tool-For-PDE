@@ -1,26 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
 from matplotlib import cm
-import matplotlib as mpl
-
 #mpl.use('Qt5Agg')
 plt.rcParams['figure.figsize'] = (10, 10)
 
 
-def kernel(S, b):
-    arg = pow((4/b) * (np.sqrt(pow(S[0], 2)+pow(S[1], 2))), 2)
-    return np.exp(-arg)
-
-
-# Inverse quad Kernel
-def kernel_2(S, b):
-    arg = pow((16/b) * (np.sqrt(pow(S[0], 2)+pow(S[1], 2))), 2)
-    return 1/(1+arg)
-
-
-def kernel_3(S, b):
-    arg = pow((16/b) * np.sqrt(pow(S[0], 2)+pow(S[1], 2)), 2)
+def kernel(s, radius):
+    arg = pow((16 / radius) * np.sqrt(pow(s[0], 2) + pow(s[1], 2)), 2)
     return np.sqrt(arg + 1)
 
 
@@ -62,12 +48,12 @@ for idx in range(Z_RBF.size):
 size = Z.size
 b = 10                  # El valor de la base debe de elegirse de acuerdo al error de la interpolación
 
-# Inicio del metodo para RBF
+# Inicio del método para RBF
 mainMatrix = np.empty(shape=(size, size))
 
 for row in range(size):
     for col in range(size):
-        mainMatrix[row, col] = kernel_3(S[row] - S[col], b)
+        mainMatrix[row, col] = kernel(S[row] - S[col], b)
 
 
 mainMatrix = np.linalg.inv(mainMatrix)              # Matriz inversa
@@ -77,10 +63,10 @@ zMatrix = np.vstack(zMatrix)                            # Matriz de Z
 fMatrix = np.empty(shape=size, dtype=np.single)     # Matriz evaluada
 
 
-# Funcion interpolada
+# Función interpolada
 def RBF(s):
-    for col in range(size):
-        fMatrix[col] = kernel_3(s - S[col], b)
+    for column in range(size):
+        fMatrix[column] = kernel(s - S[column], b)
 
     temp = fMatrix @ mainMatrix
 
@@ -100,7 +86,7 @@ Z_RBF = np.stack(Z_RBF, axis=0)
 
 
 # Plot the surface
-ax = plt.axes(projection ="3d")
+ax = plt.axes(projection="3d")
 
 surf = ax.plot_surface(X_RBF, Y_RBF, Z_RBF, cmap=cm.plasma, linewidth=0, antialiased=False, alpha=0.2, zorder=1)
 scat = ax.scatter3D(X, Y, Z, s=25, zorder=4, c=Z, cmap=cm.plasma_r)
