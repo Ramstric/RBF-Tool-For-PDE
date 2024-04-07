@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Revisiting RBF programs...">
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Second revision/RBF Interpolation 3D 2nd.py" afterDir="false" />
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Second revision of 3D Interpolation RBF">
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final revision/RBF_Interpolator_3D.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final revision/3D Example.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final revision/3D Example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Second revision/RBF Interpolation 3D 2nd.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Second revision/RBF Interpolation 3D 2nd.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,36 +55,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Second revision",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "pyconsole",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Second revision&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;pyconsole&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myUseExistingConsole" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\Final revision" />
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\Second revision" />
+      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\Final revision" />
       <recent name="C:\Users\Surface\PycharmProjects\pythonCIC\Euler" />
       <recent name="C:\Users\Surface\Downloads" />
     </key>
@@ -206,7 +208,8 @@
       <workItem from="1712393350001" duration="2286000" />
       <workItem from="1712395998957" duration="10444000" />
       <workItem from="1712406594059" duration="15929000" />
-      <workItem from="1712453436898" duration="989000" />
+      <workItem from="1712453436898" duration="1572000" />
+      <workItem from="1712527150370" duration="1680000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -328,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712411831766</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Second revision of 3D Interpolation RBF">
+      <option name="closed" value="true" />
+      <created>1712454720403</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1712454720403</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +369,8 @@
     <MESSAGE value="RBF Interpolation" />
     <MESSAGE value="Jupyter NB changes and refactoring..." />
     <MESSAGE value="Revisiting RBF programs..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Revisiting RBF programs..." />
+    <MESSAGE value="Second revision of 3D Interpolation RBF" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second revision of 3D Interpolation RBF" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

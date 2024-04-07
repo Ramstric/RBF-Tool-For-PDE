@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm
 #mpl.use('Qt5Agg')
-plt.rcParams['figure.figsize'] = (10, 10)
+plt.rcParams['figure.dpi'] = 200
 
 
 # Gaussian Kernel
