@@ -10,6 +10,7 @@ plt.rcParams['figure.figsize'] = (10, 10)
 
 #  MQuad Kernel
 def kernel(S, epsilon):
+
     arg = pow((epsilon) * np.linalg.norm(S), 2)
     return np.sqrt(arg + 1)
 

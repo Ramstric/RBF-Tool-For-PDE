@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Implementing torch...">
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/Test.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/2D Torch.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/2D Torch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +36,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Ramstric/pythonCIC.git&quot;,
-    &quot;accountId&quot;: &quot;4e1cdbc3-0a10-425f-a2f1-719906501178&quot;
+    &quot;accountId&quot;: &quot;0961eb61-62bf-47f0-99af-2cd23c1b2794&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -51,35 +53,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.2D Example.executor": "Run",
-    "Python.2D Torch.executor": "Run",
-    "Python.3D Example.executor": "Run",
-    "Python.RBF Interpolation 3D 2nd.executor": "Run",
-    "Python.RBF Torch.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Final",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.2D Example Animated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.2D Example.executor&quot;: &quot;Run&quot;,
+    &quot;Python.2D Torch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3D Example.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3D Torch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RBF Interpolation 3D 2nd.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RBF Torch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Final&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;pyconsole&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myUseExistingConsole" value="true" />
   </component>
@@ -228,6 +233,11 @@
       <workItem from="1712545079032" duration="264000" />
       <workItem from="1712545352416" duration="9465000" />
       <workItem from="1712573462359" duration="1585000" />
+      <workItem from="1712591000982" duration="40000" />
+      <workItem from="1712591048356" duration="495000" />
+      <workItem from="1712666634004" duration="127000" />
+      <workItem from="1712666795077" duration="3200000" />
+      <workItem from="1712872702064" duration="922000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -422,6 +432,11 @@
           <line>128</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -434,18 +449,19 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonCIC$Euler_2_Inequality.coverage" NAME="Euler_2 Inequality Coverage Results" MODIFIED="1697751213987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
-    <SUITE FILE_PATH="coverage/pythonCIC$3D_Example.coverage" NAME="3D Example Coverage Results" MODIFIED="1712544285323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation.coverage" NAME="RBF Interpolation Coverage Results" MODIFIED="1708823343805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF Interpolation" />
-    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1712544256958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch.coverage" NAME="RBF Torch Coverage Results" MODIFIED="1712559015605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
-    <SUITE FILE_PATH="coverage/pythonCIC$3D_Problem.coverage" NAME="3D Problem Coverage Results" MODIFIED="1712453941118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1712399005842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$Euler_1.coverage" NAME="Euler_1 Coverage Results" MODIFIED="1697730126717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
-    <SUITE FILE_PATH="coverage/pythonCIC$3D_Example_Multiple.coverage" NAME="3D Example Multiple Coverage Results" MODIFIED="1712539949035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$Runge_Kutta_4th.coverage" NAME="Runge-Kutta 4th Coverage Results" MODIFIED="1699653092688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Runge-Kutta" />
-    <SUITE FILE_PATH="coverage/pythonCIC$2D_Example_1.coverage" NAME="2D Example 1 Coverage Results" MODIFIED="1712406151843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$Finite_Dif_1.coverage" NAME="Finite Dif 1 Coverage Results" MODIFIED="1699653097133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FiniteDifferences" />
+    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch.coverage" NAME="RBF Torch Coverage Results" MODIFIED="1712559015605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
+    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1712399005842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_PDE__Colocación_Asímetrica_sin_Def__Positiva_.coverage" NAME="RBF PDE (Colocación Asímetrica sin Def. Positiva) Coverage Results" MODIFIED="1708914600569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF Interpolation" />
+    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1712666913316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonCIC$Euler_1.coverage" NAME="Euler_1 Coverage Results" MODIFIED="1697730126717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
+    <SUITE FILE_PATH="coverage/pythonCIC$3D_Example.coverage" NAME="3D Example Coverage Results" MODIFIED="1712544285323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
+    <SUITE FILE_PATH="coverage/pythonCIC$3D_Problem.coverage" NAME="3D Problem Coverage Results" MODIFIED="1712453941118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
+    <SUITE FILE_PATH="coverage/pythonCIC$2D_Example_1.coverage" NAME="2D Example 1 Coverage Results" MODIFIED="1712406151843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
+    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation.coverage" NAME="RBF Interpolation Coverage Results" MODIFIED="1708823343805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF Interpolation" />
+    <SUITE FILE_PATH="coverage/pythonCIC$3D_Torch.coverage" NAME="3D Torch Coverage Results" MODIFIED="1712668759177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation_2nd.coverage" NAME="RBF Interpolation 2nd Coverage Results" MODIFIED="1712418216787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Second revision" />
+    <SUITE FILE_PATH="coverage/pythonCIC$3D_Example_Multiple.coverage" NAME="3D Example Multiple Coverage Results" MODIFIED="1712539949035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
   </component>
 </project>
