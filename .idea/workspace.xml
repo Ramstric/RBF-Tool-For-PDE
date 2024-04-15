@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Finally! Fast 3D RBF since I replaced &quot;for loops&quot; with only torch.tensor operations, from +25s to just ms!!! Need to implement it to 2D...">
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/Testing for Numpy 3D.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/Testing for Torch 3D.ipynb" afterDir="false" />
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="More testing and refactoring...">
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/2D Torch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch Animation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/Ripple Animation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/animation_drawing3D.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/Test.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,39 +56,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.2D Example.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2D Torch.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.3D Example Multiple.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3D Example.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3D Torch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.RBF Interpolation 3D 2nd.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RBF Torch 3D.executor&quot;: &quot;Run&quot;,
-    &quot;Python.RBF Torch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.RBF_Interpolator.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Final&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.2D Example.executor": "Run",
+    "Python.2D Torch.executor": "Debug",
+    "Python.3D Example Multiple.executor": "Run",
+    "Python.3D Example.executor": "Run",
+    "Python.3D Torch Animation.executor": "Run",
+    "Python.3D Torch.executor": "Run",
+    "Python.RBF Interpolation 3D 2nd.executor": "Debug",
+    "Python.RBF Torch 3D.executor": "Run",
+    "Python.RBF Torch.executor": "Run",
+    "Python.RBF_Interpolator.executor": "Debug",
+    "Python.Ripple Animation.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Final",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Python&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
     ]
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myUseExistingConsole" value="true" />
   </component>
@@ -237,6 +242,8 @@
       <workItem from="1712573462359" duration="1585000" />
       <workItem from="1713172918583" duration="1341000" />
       <workItem from="1713174296074" duration="542000" />
+      <workItem from="1713174863491" duration="3036000" />
+      <workItem from="1713178342054" duration="1588000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -390,7 +397,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713170837952</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="More testing and refactoring...">
+      <option name="closed" value="true" />
+      <created>1713175207790</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1713175207790</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +445,8 @@
     <MESSAGE value="3D Interpolation with classes" />
     <MESSAGE value="Implementing torch..." />
     <MESSAGE value="Finally! Fast 3D RBF since I replaced &quot;for loops&quot; with only torch.tensor operations, from +25s to just ms!!! Need to implement it to 2D..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finally! Fast 3D RBF since I replaced &quot;for loops&quot; with only torch.tensor operations, from +25s to just ms!!! Need to implement it to 2D..." />
+    <MESSAGE value="More testing and refactoring..." />
+    <option name="LAST_COMMIT_MESSAGE" value="More testing and refactoring..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -460,8 +476,8 @@
     <SUITE FILE_PATH="coverage/pythonCIC$3D_Example.coverage" NAME="3D Example Coverage Results" MODIFIED="1712544285323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation.coverage" NAME="RBF Interpolation Coverage Results" MODIFIED="1708823343805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF Interpolation" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation_3D_2nd.coverage" NAME="RBF Interpolation 3D 2nd Coverage Results" MODIFIED="1713139554538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/2nd revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1712544256958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch.coverage" NAME="RBF Torch Coverage Results" MODIFIED="1712559015605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
+    <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1713175718148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonCIC$3D_Problem.coverage" NAME="3D Problem Coverage Results" MODIFIED="1712453941118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1713139053702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$2D_Torch.coverage" NAME="2D Torch Coverage Results" MODIFIED="1713140802796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
