@@ -2,11 +2,10 @@
 #        Radial Basis Function Interpolation
 #             for Non-Linear Data
 
-import numpy as np
 import torch
 import matplotlib.pyplot as plt
 import matplotx
-from math import e, sqrt
+from math import e
 custom_colors = {
     "Cyan": "#56B6C2",
     "Blue": "#61AFEF",
@@ -47,9 +46,11 @@ def multiQuad_kernel(x: torch.tensor, radius: float):
 
 
 # Datos muestreados
-x_0 = torch.tensor([0, 0.054, 0.259, 0.350, 0.482, 0.624, 0.679, 0.770, 1.037, 1.333, 1.505, 1.688, 1.933, 2.283], device=device)
+x_0 = torch.tensor([0, 0.054, 0.259, 0.350, 0.482, 0.624, 0.679, 0.770, 1.037, 1.333, 1.505, 1.688, 1.933, 2.283],
+                   device=device)
 
-f_0 = torch.tensor([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5.428, 5.428, 4.141, -0.326, -2.220], device=device)
+f_0 = torch.tensor([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5.428, 5.428, 4.141, -0.326, -2.220],
+                   device=device)
 
 if x_0.size(dim=0) != f_0.size(dim=0):
     raise Exception("Los datos muestreados deben de tener la misma longitud")

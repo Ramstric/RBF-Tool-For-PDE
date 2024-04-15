@@ -51,6 +51,9 @@ x_RBF, y_RBF = np.meshgrid(x_RBF, y_RBF)
 pairs_2 = np.asarray([x_RBF.ravel(), y_RBF.ravel()]).T
 
 z_RBF = [interpolate_RBF(pair, 10) for pair in pairs_2]
+
+print(z_RBF)
+
 z_RBF = np.array_split(z_RBF, x_RBF.shape[0])
 z_RBF = np.stack(z_RBF, axis=0)
 
