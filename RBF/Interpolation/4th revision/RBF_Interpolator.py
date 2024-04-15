@@ -78,11 +78,6 @@ class RBFInterpolator3D(object):
     def multiQuad(x: torch.tensor, radius: float):
         return torch.sqrt(1 + (16 * x / radius) ** 2)
 
-    def set_new_data(self, *x: np.array, f: np.array):
-        self.v = x
-        self.f_vector = f.ravel()
-        self.recalculate_weights()
-
     def recalculate_weights(self):
         self.method = getattr(self, self.kernel_str)
 
@@ -92,9 +87,18 @@ class RBFInterpolator3D(object):
             [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f_vector)
 
-    def interpolate(self, x: torch.tensor):
+    def interpolate(self, *x: torch.tensor):
         self.method = getattr(self, self.kernel_str)
 
-        temp = torch.stack([torch.linalg.vector_norm(torch.sub(x, pos), dim=1) for pos in self.pairs])
+        data_pairs = torch.stack([x[0].ravel(), x[1].ravel()]).T
+
+        # Distance between the data points and the interpolation points
+        temp = torch.stack([torch.linalg.vector_norm(torch.sub(data_pairs, pos), dim=1) for pos in self.pairs])
+
+        # Applying kernel function
         temp = self.method(temp, self.radius)
-        return torch.matmul(temp.T, self.weights_matrix)
+
+        # Adding weights
+        temp = torch.matmul(temp.T, self.weights_matrix)
+
+        return torch.reshape(temp, x[0].shape)

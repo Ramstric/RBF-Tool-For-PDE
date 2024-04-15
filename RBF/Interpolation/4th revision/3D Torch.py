@@ -1,4 +1,3 @@
-import numpy as np
 import torch
 import RBF_Interpolator
 
@@ -10,6 +9,7 @@ from matplotlib.colors import ListedColormap
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+# --------------------------------[ Plot style ]--------------------------------
 #mpl.use('Qt5Agg')
 plt.rcParams['figure.figsize'] = (10, 10)
 plt.rcParams['figure.dpi'] = 200
@@ -50,34 +50,26 @@ plt.style.use(matplotx.styles.onedark)
 cmap = LinearSegmentedColormap.from_list('mycmap', [custom_colors[i] for i in range(2)])
 cmap_2 = ListedColormap([custom_colors[i] for i in range(5)])
 
-# Datos muestreados
+# --------------------------------[ Datos muestreados ]--------------------------------
 x_0 = torch.linspace(-5, 5, 15, device=device)
 y_0 = torch.linspace(-5, 5, 15, device=device)
-
-#x_0, y_0 = np.meshgrid(x_0, y_0)
 x_0, y_0 = torch.meshgrid(x_0, y_0, indexing='xy')
 
 z = 1 - abs(x_0+y_0)-abs(y_0-x_0)
 
-radius = 10
-
+radius = 1
 interpolator = RBF_Interpolator.RBFInterpolator3D("multiQuad", x_0, y_0, f=z, r=radius)
 
-# Interpolación
-step = 100
+# --------------------------------[ Interpolación ]--------------------------------
+step = 50
 
 x_RBF = torch.linspace(-5, 5, step, device=device)
 y_RBF = torch.linspace(-5, 5, step, device=device)
 x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
 
-pairs_2 = torch.stack([x_RBF.ravel(), y_RBF.ravel()]).T
+z_RBF = interpolator.interpolate(x_RBF, y_RBF)
 
-z_RBF = interpolator.interpolate(pairs_2)
-
-z_RBF = torch.reshape(z_RBF, x_RBF.shape)
-
-
-# Plotting
+# --------------------------------[ Plotting ]--------------------------------
 ax = plt.axes(projection="3d")
 surf = ax.plot_surface(x_RBF.cpu().detach().numpy(), y_RBF.cpu().detach().numpy(), z_RBF.cpu().detach().numpy(),
                        cmap=cm.bone, antialiased=True, alpha=0.8, zorder=1)
@@ -95,3 +87,5 @@ if device.type == 'cuda':
     print('Memory Usage:')
     print('Allocated:', round(torch.cuda.memory_allocated(0)/1024**3, 1), 'GB')
     print('Cached:   ', round(torch.cuda.memory_reserved(0)/1024**3, 1), 'GB')
+
+torch.cuda.empty_cache()
