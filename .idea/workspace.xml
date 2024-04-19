@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="More testing and refactoring...">
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/2D Torch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch Animation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/3D Torch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/Ripple Animation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/animation_drawing3D.gif" afterDir="false" />
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Animations and moar...">
+      <change afterPath="$PROJECT_DIR$/RBF/Differential Equations/Second revision/RBF.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Differential Equations/Second revision/Unified Interpolation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Differential Equations/Third revision/RBF.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Differential Equations/Third revision/Unified Interpolation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/Unified Interpolation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/RBF_Interpolator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/Unified Interpolation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Differential Equations/RBF ODE (Colocación Asimétrica sin Def. Positiva).py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Differential Equations/First revision/RBF ODE (Colocación Asimétrica sin Def. Positiva).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Differential Equations/RBF ODE (Colocación Simétrica).py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Differential Equations/First revision/RBF ODE (Colocación Simétrica).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/2D Torch.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/2D Torch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Partial Differential Equations/RBF PDE (Colocación Asímetrica sin Def. Positiva).py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/First revision/RBF PDE (Colocación Asímetrica sin Def. Positiva).py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -60,16 +65,19 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.2D Example.executor": "Run",
-    "Python.2D Torch.executor": "Debug",
+    "Python.2D Torch.executor": "Run",
     "Python.3D Example Multiple.executor": "Run",
     "Python.3D Example.executor": "Run",
     "Python.3D Torch Animation.executor": "Run",
     "Python.3D Torch.executor": "Run",
     "Python.RBF Interpolation 3D 2nd.executor": "Debug",
+    "Python.RBF ODE (Colocación Asimétrica sin Def. Positiva).executor": "Run",
     "Python.RBF Torch 3D.executor": "Run",
     "Python.RBF Torch.executor": "Run",
+    "Python.RBF.executor": "Run",
     "Python.RBF_Interpolator.executor": "Debug",
     "Python.Ripple Animation.executor": "Run",
+    "Python.Unified Interpolation.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -77,7 +85,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Interpolation/Final",
+    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Differential Equations/Third revision",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,18 +105,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Differential Equations\Third revision" />
+      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Differential Equations\Second revision" />
+      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Partial Differential Equations\Second revision" />
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\Final" />
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\Final revision" />
-      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\Second revision" />
-      <recent name="C:\Users\Surface\PycharmProjects\pythonCIC\Euler" />
-      <recent name="C:\Users\Surface\Downloads" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Differential Equations\First revision" />
+      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Partial Differential Equations\First revision" />
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation\First revision" />
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Partial Differential Equations" />
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Differential Equations" />
-      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Interpolation" />
-      <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF" />
     </key>
   </component>
   <component name="RunManager">
@@ -244,6 +252,9 @@
       <workItem from="1713174296074" duration="542000" />
       <workItem from="1713174863491" duration="3036000" />
       <workItem from="1713178342054" duration="1588000" />
+      <workItem from="1713181945757" duration="94000" />
+      <workItem from="1713246115259" duration="1363000" />
+      <workItem from="1713502708764" duration="15145000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -405,7 +416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713175207790</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Animations and moar...">
+      <option name="closed" value="true" />
+      <created>1713182031555</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1713182031555</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,13 +465,14 @@
     <MESSAGE value="Implementing torch..." />
     <MESSAGE value="Finally! Fast 3D RBF since I replaced &quot;for loops&quot; with only torch.tensor operations, from +25s to just ms!!! Need to implement it to 2D..." />
     <MESSAGE value="More testing and refactoring..." />
-    <option name="LAST_COMMIT_MESSAGE" value="More testing and refactoring..." />
+    <MESSAGE value="Animations and moar..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Animations and moar..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/RBF/Partial Differential Equations/RBF PDE (Colocación Asímetrica sin Def. Positiva).py</url>
+          <url>file://$PROJECT_DIR$/RBF/Partial Differential Equations/First revision/RBF PDE (Colocación Asímetrica sin Def. Positiva).py</url>
           <line>128</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
@@ -460,6 +480,16 @@
           <url>file://$PROJECT_DIR$/RBF/Interpolation/2nd revision/RBF Interpolation 3D 2nd.py</url>
           <line>56</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RBF/Differential Equations/First revision/RBF ODE (Colocación Asimétrica sin Def. Positiva).py</url>
+          <line>69</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RBF/Interpolation/Final/RBF_Interpolator.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -478,9 +508,11 @@
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation_3D_2nd.coverage" NAME="RBF Interpolation 3D 2nd Coverage Results" MODIFIED="1713139554538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/2nd revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch.coverage" NAME="RBF Torch Coverage Results" MODIFIED="1712559015605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$main.coverage" NAME="main Coverage Results" MODIFIED="1713175718148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonCIC$RBF_ODE__Colocación_Asimétrica_sin_Def__Positiva_.coverage" NAME="RBF ODE (Colocación Asimétrica sin Def. Positiva) Coverage Results" MODIFIED="1713519673924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Differential Equations/First revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$3D_Problem.coverage" NAME="3D Problem Coverage Results" MODIFIED="1712453941118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1713139053702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
-    <SUITE FILE_PATH="coverage/pythonCIC$2D_Torch.coverage" NAME="2D Torch Coverage Results" MODIFIED="1713140802796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
+    <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1713511040200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
+    <SUITE FILE_PATH="coverage/pythonCIC$2D_Torch.coverage" NAME="2D Torch Coverage Results" MODIFIED="1713511333121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
+    <SUITE FILE_PATH="coverage/pythonCIC$Unified_Interpolation.coverage" NAME="Unified Interpolation Coverage Results" MODIFIED="1713521955158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Differential Equations/Second revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$Euler_1.coverage" NAME="Euler_1 Coverage Results" MODIFIED="1697730126717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Euler" />
     <SUITE FILE_PATH="coverage/pythonCIC$3D_Example_Multiple.coverage" NAME="3D Example Multiple Coverage Results" MODIFIED="1712539949035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$Runge_Kutta_4th.coverage" NAME="Runge-Kutta 4th Coverage Results" MODIFIED="1699653092688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Runge-Kutta" />

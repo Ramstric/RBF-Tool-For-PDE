@@ -3,9 +3,6 @@
 #                   Mesh-free method
 
 import numpy as np
-
-import pandas as pd
-
 import matplotlib.pyplot as plt
 # mpl.use('Qt5Agg')
 
@@ -62,9 +59,11 @@ for row in range(0, x_B.size):
     for col in range(0, size):
         Block_1[row, col] = kernel(x_0[row] - x_0[col], e)
 
+
 for row in range(0, x_I.size):
     for col in range(0, size):
         Block_2[row, col] = 2 * D_kernel(x_0[row + x_B.size] - x_0[col], e) - kernel(x_0[row + x_B.size] - x_0[col], e)
+        print(x_0[row + x_B.size] - x_0[col])
 
 A_Matrix = np.vstack((Block_1, Block_2))
 
@@ -91,16 +90,11 @@ y_RBF = np.zeros(x_1.size)
 for node in range(x_1.size):
     y_RBF[node] = RBF(x_1[node])
 
-# --------------------------------[ Tables ]--------------------------------
-
-Table_Original = pd.DataFrame(data=[x_0, Y_Vector.reshape(-1, 1).squeeze()], index=['X', 'Y']).T
-Table_Interpolated = pd.DataFrame(data=[x_1, y_RBF], index=['X', 'Y']).T
-
 # -------------------------------[ Plotting ]-------------------------------
 
 plt.plot(x_1, y_RBF, linewidth=1, color="dodgerblue")       # Interpolated plot
 #plt.scatter(x_1, y_RBF, s=5, color="crimson", zorder=2)           # Interpolated scatter
-#plt.scatter(x_0, y_0, s=5, color="crimson", zorder=2)             # Original points scatter
+#plt.scatter(x_0, Y_Vector, s=5, color="crimson", zorder=2)             # Original points scatter
 
 # Configure plot
 ax = plt.gca()

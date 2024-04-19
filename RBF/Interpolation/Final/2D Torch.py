@@ -50,7 +50,7 @@ x_0 = torch.tensor([0, 0.054, 0.259, 0.350, 0.482, 0.624, 0.679, 0.770, 1.037, 1
 y_0 = torch.tensor([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5.428, 5.428, 4.141, -0.326, -2.220],
                    device=device)
 
-interpolator = RBF_Interpolator.RBFInterpolator("gaussian", x_0, y_0, 1)
+interpolator = RBF_Interpolator.RBFInterpolator2D("gaussian", x_0, y_0, 1)
 
 # Interpolación
 x_1 = torch.linspace(0, 2.5, 200, device=device).cpu().detach().numpy()
