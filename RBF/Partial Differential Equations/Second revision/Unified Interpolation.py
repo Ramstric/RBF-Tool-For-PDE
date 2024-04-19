@@ -5,7 +5,7 @@
 import torch
 import matplotlib.pyplot as plt
 import matplotx
-import RBF_Interpolator
+import RBF
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -17,26 +17,51 @@ custom_colors = {"Blue": "#61AFEF", "Orange": "#D49F6E", "Green": "#98C379", "Ro
                  "LightGray": "#CCCCCC", "LightBlack": "#282C34", "Black": "#1D2025"}
 plt.style.use(matplotx.styles.onedark)
 
-# --------------------------------[ Datos muestreados ]--------------------------------
-x_0 = torch.tensor([0, 0.054, 0.259, 0.350, 0.482, 0.624, 0.679, 0.770, 1.037, 1.333, 1.505, 1.688, 1.933, 2.283],
-                   device=device)
-y_0 = torch.tensor([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5.428, 5.428, 4.141, -0.326, -2.220],
-                   device=device)
 
-interpolator = RBF_Interpolator.RBFInterpolator("gaussian", x_0, f=y_0, r=1)
+# Function of PDE
+def f(x):
+    return 0
+
+
+# --------------------------------[ Datos muestreados ]--------------------------------
+x_B = torch.tensor([-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2,
+                    -2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2,
+                    -2, -2, -2, -2, -2, -2, -2, -2,
+                    2, 2, 2, 2, 2, 2, 2, 2], device=device)      # Boundary nodes
+x_I = torch.linspace(-1.6, 2, 9, device=device)      # Interior nodes
+
+x_0 = torch.cat((x_B, x_I), dim=0)                 # Making the Vector X (Boundary + Interior nodes)
+
+y_B = torch.tensor([-2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+                    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                    -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6,
+                    -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6], device=device)      # Boundary nodes
+y_I = torch.linspace(-1.6, 2, 9, device=device)      # Interior nodes
+
+y_0 = torch.cat((x_B, x_I), dim=0)                 # Making the Vector X (Boundary + Interior nodes)
+
+
+z_B = torch.tensor([2, 0.0125342863113], device=device)    # Boundary conditions
+z_I = torch.zeros(x_I.size(), device=device)                    # Evaluation PDE function on the Interior nodes
+
+z_0 = torch.cat((z_B, z_I), dim=0)                 # Making the Vector Y (Boundary conditions + Function values)
+
+interpolator = RBF.InterpolatorPDE("multiQuad", x_0, f=y_0, r=1.49771, boundary=x_B)
 
 # --------------------------------[ Interpolación ]--------------------------------
-x_1 = torch.linspace(0, 2.5, 200, device=device)
+x_1 = torch.linspace(0, 90, 150, device=device)
 
 y_RBF = interpolator.interpolate(x_1)
+
+#print(interpolator.interpolate(torch.tensor([3.99522861], device=device)))
 
 # --------------------------------[ Plotting ]--------------------------------
 fig, ax = plt.subplots(1, 1)
 plt.grid()
 
-plt.scatter(x_0.cpu().detach().numpy(), y_0.cpu().detach().numpy(), s=8, zorder=2, color=custom_colors["LightGray"])
 plot = plt.plot(x_1.cpu().detach().numpy(), y_RBF.cpu().detach().numpy())
+#plt.scatter(x_0.cpu().detach().numpy(), y_0.cpu().detach().numpy(), s=8, zorder=2, color=custom_colors["LightGray"])
 
-plt.xlim(0, 2.5)
-plt.ylim(-3, 6)
+#plt.xlim(0, 2.5)
+#plt.ylim(-3, 6)
 plt.show()

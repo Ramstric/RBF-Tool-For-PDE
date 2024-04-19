@@ -44,7 +44,7 @@ custom_colors = {
 # mpl.use('Qt5Agg')
 plt.style.use(matplotx.styles.onedark)
 
-# Datos muestreados
+# --------------------------------[ Datos muestreados ]--------------------------------
 x_0 = torch.tensor([0, 0.054, 0.259, 0.350, 0.482, 0.624, 0.679, 0.770, 1.037, 1.333, 1.505, 1.688, 1.933, 2.283],
                    device=device)
 y_0 = torch.tensor([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5.428, 5.428, 4.141, -0.326, -2.220],
@@ -52,14 +52,13 @@ y_0 = torch.tensor([0, 0.633, 3.954, 3.697, 1.755, 0.679, 0.422, 0.375, 2.574, 5
 
 interpolator = RBF_Interpolator.RBFInterpolator2D("gaussian", x_0, y_0, 1)
 
-# Interpolación
+# --------------------------------[ Interpolación ]--------------------------------
 x_1 = torch.linspace(0, 2.5, 200, device=device).cpu().detach().numpy()
-
-fig, ax = plt.subplots(1, 1)
 
 y_RBF = [interpolator.interpolate(x).cpu().detach().numpy() for x in x_1]
 
-# Plotting
+# --------------------------------[ Plotting ]--------------------------------
+fig, ax = plt.subplots(1, 1)
 plt.grid()
 plt.scatter(x_0.cpu().detach().numpy(), y_0.cpu().detach().numpy(), s=8, zorder=2, color=custom_colors["LightGray"])
 

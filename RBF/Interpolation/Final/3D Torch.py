@@ -63,7 +63,7 @@ radius = 1
 interpolator = RBF_Interpolator.RBFInterpolator3D("multiQuad", x_0, y_0, f=z, r=radius)
 
 # --------------------------------[ Interpolación ]--------------------------------
-step = 50
+step = 30
 
 x_RBF = torch.linspace(-10, 10, step, device=device)
 y_RBF = torch.linspace(-10, 10, step, device=device)

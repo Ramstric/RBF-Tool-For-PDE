@@ -9,47 +9,7 @@ from math import e
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-class RBFInterpolator2D(object):
-    def __init__(self, kernel_str, x: torch.tensor, f: torch.tensor, r: float):
-        self.kernel_str = kernel_str
-        self.method = getattr(self, kernel_str)
-
-        self.x = x
-        self.f = f
-
-        #if x.size(dim=0) != f.size(dim=0):
-        #    raise Exception("Los datos muestreados deben de tener la misma longitud")
-
-        self.radius = r
-
-        self.phi_matrix = torch.stack([self.method(self.x - rbf_pos, r) for rbf_pos in self.x])
-        self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f)
-
-    @staticmethod
-    def gaussian(x: torch.tensor, radius: float):
-        return e**(-(4 * x / radius) ** 2)
-
-    @staticmethod
-    def invQuad(x: torch.tensor, radius: float):
-        return 1 / (1 + (16 * x / radius) ** 2)
-
-    @staticmethod
-    def multiQuad(x: torch.tensor, radius: float):
-        return torch.sqrt(1 + (16 * x / radius) ** 2)
-
-    def recalculate_weights(self):
-        self.method = getattr(self, self.kernel_str)
-        self.phi_matrix = torch.stack([self.method(self.x - rbf_pos, self.radius) for rbf_pos in self.x])
-        self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f)
-
-    def interpolate(self, x: float):
-        temp = 0
-        for (rbf_pos, w) in zip(self.x, self.weights_matrix):
-            temp += w * self.method(x - rbf_pos, self.radius)
-        return temp
-
-
-class RBFInterpolator(object):
+class Interpolator(object):
     def __init__(self, kernel_str: str, *x: torch.tensor, f: torch.tensor, r: float):
         self.kernel_str = kernel_str
         self.method = getattr(self, kernel_str)
@@ -103,8 +63,8 @@ class RBFInterpolator(object):
         return torch.reshape(temp, x[0].shape)
 
 
-class RBFInterpolator3D(object):
-    def __init__(self, kernel_str: str, *x: torch.tensor, f: torch.tensor, r: float):
+class InterpolatorPDE(object):
+    def __init__(self, kernel_str: str, *x: torch.tensor, f: torch.tensor, r: float, boundary: torch.tensor):
         self.kernel_str = kernel_str
         self.method = getattr(self, kernel_str)
 
@@ -113,10 +73,16 @@ class RBFInterpolator3D(object):
 
         self.radius = r
 
-        self.pairs = torch.stack([self.v[0].ravel(), self.v[1].ravel()]).T
+        self.pairs = torch.stack([arg.ravel() for arg in x]).T
 
-        self.phi_matrix = torch.stack(
-            [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
+        A = torch.stack([self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs if pos in boundary])
+        B = torch.stack([self.derivative_operator(pos - self.pairs, self.radius) for pos in self.pairs if pos not in boundary])
+        B = torch.squeeze(B)  # Why does it have to be negative?
+
+        self.phi_matrix = torch.cat((A, B))
+
+        #self.phi_matrix = torch.stack(
+        #    [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f_vector)
 
     @staticmethod
@@ -129,12 +95,30 @@ class RBFInterpolator3D(object):
 
     @staticmethod
     def multiQuad(x: torch.tensor, radius: float):
-        return torch.sqrt(1 + (16 * x / radius) ** 2)
+        return torch.sqrt(1 + (x / radius) ** 2)
+
+    @staticmethod
+    def invQuadDerivative(x: torch.tensor, radius: float):
+        return -32 * x / (1 + (16 * x / radius) ** 2) ** 2
+
+    @staticmethod
+    def multiQuadDerivative(x: torch.tensor, radius: float):
+        return x/(radius * torch.sqrt(radius**2 + x**2))
+
+    @staticmethod
+    def multiQuadSecondDerivative(x: torch.tensor, radius: float):
+        return radius/((radius**2 + x**2)*torch.sqrt(radius**2 + x**2))
+
+    def derivative_operator(self, x: torch.tensor, radius: float):
+        methodDerivative = getattr(self, self.kernel_str+"Derivative")
+        methodSecondDerivative = getattr(self, self.kernel_str+"SecondDerivative")
+        #return 2 * methodDerivative(x, radius) - self.method(x, radius)
+        return methodSecondDerivative(x, radius) + 0.14*methodDerivative(x, radius) + 0.1*self.method(x, radius)
 
     def recalculate_weights(self):
         self.method = getattr(self, self.kernel_str)
 
-        self.pairs = torch.stack([self.v[0].ravel(), self.v[1].ravel()]).T
+        self.pairs = torch.stack([arg.ravel() for arg in self.v]).T
 
         self.phi_matrix = torch.stack(
             [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
@@ -143,7 +127,7 @@ class RBFInterpolator3D(object):
     def interpolate(self, *x: torch.tensor):
         self.method = getattr(self, self.kernel_str)
 
-        data_pairs = torch.stack([x[0].ravel(), x[1].ravel()]).T
+        data_pairs = torch.stack([arg.ravel() for arg in x]).T
 
         # Distance between the data points and the interpolation points
         temp = torch.stack([torch.linalg.vector_norm(torch.sub(data_pairs, pos), dim=1) for pos in self.pairs])

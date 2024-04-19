@@ -31,18 +31,18 @@ x_0 = torch.cat((x_B, x_I), dim=0)                 # Making the Vector X (Bounda
 
 
 y_B = torch.tensor([2, 0.0125342863113], device=device)    # Boundary conditions
-y_I = torch.zeros(x_I.size(), device=device)                                           # Evaluation PDE function on the Interior nodes
+y_I = torch.zeros(x_I.size(), device=device)                    # Evaluation PDE function on the Interior nodes
 
 y_0 = torch.cat((y_B, y_I), dim=0)                 # Making the Vector Y (Boundary conditions + Function values)
 
 interpolator = RBF.InterpolatorPDE("multiQuad", x_0, f=y_0, r=1.49771, boundary=x_B)
 
 # --------------------------------[ Interpolación ]--------------------------------
-x_1 = torch.linspace(0, 90, 200, device=device)
+x_1 = torch.linspace(0, 90, 150, device=device)
 
 y_RBF = interpolator.interpolate(x_1)
 
-print(interpolator.interpolate(torch.tensor([3.99522861], device=device)))
+#print(interpolator.interpolate(torch.tensor([3.99522861], device=device)))
 
 # --------------------------------[ Plotting ]--------------------------------
 fig, ax = plt.subplots(1, 1)
