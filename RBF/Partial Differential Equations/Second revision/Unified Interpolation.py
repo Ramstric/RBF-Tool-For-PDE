@@ -28,21 +28,21 @@ x_B = torch.tensor([-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2,
                     -2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2,
                     -2, -2, -2, -2, -2, -2, -2, -2,
                     2, 2, 2, 2, 2, 2, 2, 2], device=device)      # Boundary nodes
-x_I = torch.linspace(-1.6, 2, 9, device=device)      # Interior nodes
+x_I = torch.arange(-1.6, 2, 0.4, device=device)      # Interior nodes
 
 x_0 = torch.cat((x_B, x_I), dim=0)                 # Making the Vector X (Boundary + Interior nodes)
 
 y_B = torch.tensor([-2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
                     2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                     -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6,
-                    -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6], device=device)      # Boundary nodes
-y_I = torch.linspace(-1.6, 2, 9, device=device)      # Interior nodes
+                    -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6], device=device)  # Boundary nodes
+y_I = torch.arange(-1.6, 2, 0.4, device=device)      # Interior nodes
 
 y_0 = torch.cat((x_B, x_I), dim=0)                 # Making the Vector X (Boundary + Interior nodes)
 
 
-z_B = torch.tensor([2, 0.0125342863113], device=device)    # Boundary conditions
-z_I = torch.zeros(x_I.size(), device=device)                    # Evaluation PDE function on the Interior nodes
+#z_B = torch.tensor([2, 0.0125342863113], device=device)    # Boundary conditions
+#z_I = torch.zeros(x_I.size(), device=device)                    # Evaluation PDE function on the Interior nodes
 
 z_0 = torch.cat((z_B, z_I), dim=0)                 # Making the Vector Y (Boundary conditions + Function values)
 
