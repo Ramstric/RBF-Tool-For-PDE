@@ -53,11 +53,14 @@ cmap_2 = ListedColormap([custom_colors[i] for i in range(5)])
 # --------------------------------[ Datos muestreados ]--------------------------------
 x_0 = torch.linspace(-10, 10, 20, device=device)
 y_0 = torch.linspace(-10, 10, 20, device=device)
+print(x_0.shape)
 x_0, y_0 = torch.meshgrid(x_0, y_0, indexing='xy')
-
+print(x_0.shape)
 #z = 1 - abs(x_0+y_0)-abs(y_0-x_0)
 t = 7
 z = torch.sin(torch.sqrt(x_0**2 + y_0**2+t**2))/torch.sqrt(x_0**2 + y_0**2+t**2)
+
+print(z.shape)
 
 radius = 1
 interpolator = RBF_Interpolator.RBFInterpolator3D("multiQuad", x_0, y_0, f=z, r=radius)

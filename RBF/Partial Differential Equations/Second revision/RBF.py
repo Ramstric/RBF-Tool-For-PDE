@@ -2,7 +2,6 @@
 #        Radial Basis Function Interpolation
 #             for Non-Linear Data
 
-import numpy as np
 import torch
 from math import e
 
@@ -64,64 +63,98 @@ class Interpolator(object):
 
 
 class InterpolatorPDE(object):
-    def __init__(self, kernel_str: str, *x: torch.tensor, f: torch.tensor, r: float, boundary: torch.tensor):
+    def __init__(self, kernel_str: str, boundary: torch.tensor, inner: torch.tensor, all: torch.tensor, f: torch.tensor, r: float, ode: str):
         self.kernel_str = kernel_str
         self.method = getattr(self, kernel_str)
-
-        self.v = x
-        self.f_vector = f.ravel()
+        self.ode = ode
 
         self.radius = r
 
-        self.pairs = torch.stack([arg.ravel() for arg in x]).T
+        self.pairs = all
+        self.boundary = boundary
+        self.inner = inner
 
-        A = torch.stack([self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs if pos in boundary])
-        B = torch.stack([self.derivative_operator(pos - self.pairs, self.radius) for pos in self.pairs if pos not in boundary])
-        B = torch.squeeze(B)  # Why does it have to be negative?
+        self.f_vector = f
 
-        self.phi_matrix = torch.cat((A, B))
+        boundary_matrix = torch.stack([self.method(torch.linalg.vector_norm(pos - self.pairs, dim=1), self.radius)
+                                       for pos in self.boundary])
+        internal_matrix = torch.stack([self.derivative_operator(ode, torch.linalg.vector_norm(pos - self.pairs, dim=1),
+                                       self.radius, x=pos[0] - torch.stack([pos[0] for pos in self.pairs]),
+                                       y=pos[1] - torch.stack([pos[1] for pos in self.pairs])) for pos in self.inner])
 
-        #self.phi_matrix = torch.stack(
-        #    [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
+        internal_matrix = torch.squeeze(internal_matrix)  # Why does it have to be negative?
+
+        self.phi_matrix = torch.cat((boundary_matrix, internal_matrix))
+
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f_vector)
 
     @staticmethod
     def gaussian(x: torch.tensor, radius: float):
-        return e ** (-(4 * x / radius) ** 2)
+        return e ** (-(radius * x)**2)
 
-    @staticmethod
-    def invQuad(x: torch.tensor, radius: float):
-        return 1 / (1 + (16 * x / radius) ** 2)
+    def gaussianDerivative(self, x: torch.tensor, radius: float):
+        return (-2*x*radius**2) * self.gaussian(x, radius)
+
+    def gaussianSecondDerivative(self, x: torch.tensor, radius: float):
+        return (-2*radius**2)*(-2*(radius*x)**2 * self.gaussian(x, radius) + self.gaussian(x, radius))
 
     @staticmethod
     def multiQuad(x: torch.tensor, radius: float):
-        return torch.sqrt(1 + (x / radius) ** 2)
+        return torch.sqrt(1 + (radius * x)**2)
 
-    @staticmethod
-    def invQuadDerivative(x: torch.tensor, radius: float):
-        return -32 * x / (1 + (16 * x / radius) ** 2) ** 2
+    def multiQuadDerX(self, s: torch.tensor, x: torch.tensor, radius: float):
+        return (x * radius**2)/self.multiQuad(s, radius)
 
-    @staticmethod
-    def multiQuadDerivative(x: torch.tensor, radius: float):
-        return x/(radius * torch.sqrt(radius**2 + x**2))
+    def multiQuadDerXX(self, s: torch.tensor, y: torch.tensor, radius: float):
+        return (radius**4 * y**2 + 1)/self.multiQuad(s, radius)**3
 
-    @staticmethod
-    def multiQuadSecondDerivative(x: torch.tensor, radius: float):
-        return radius/((radius**2 + x**2)*torch.sqrt(radius**2 + x**2))
+    def multiQuadDerY(self, s: torch.tensor, y: torch.tensor, radius: float):
+        return (y * radius**2)/self.multiQuad(s, radius)
 
-    def derivative_operator(self, x: torch.tensor, radius: float):
-        methodDerivative = getattr(self, self.kernel_str+"Derivative")
-        methodSecondDerivative = getattr(self, self.kernel_str+"SecondDerivative")
-        #return 2 * methodDerivative(x, radius) - self.method(x, radius)
-        return methodSecondDerivative(x, radius) + 0.14*methodDerivative(x, radius) + 0.1*self.method(x, radius)
+    def multiQuadDerYY(self, s: torch.tensor, x: torch.tensor, radius: float):
+        return (radius**4 * x**2 + 1)/self.multiQuad(s, radius)**3
 
-    def recalculate_weights(self):
+    def derivative_operator(self, operation: str, s: torch.tensor, radius: float, x: torch.tensor, y: torch.tensor):
+
+        #return self.multiQuadDerX(s, x, radius) + self.multiQuadDerY(s, y, radius)
+
+        chars = operation.split()
+        operators = chars[1::2]
+
+        # Operators
+        op = {'+': lambda a, b: a + b, '-': lambda a, b: a - b}
+        val = {"f": self.method(s, radius), "f_x": self.multiQuadDerX(s, x, radius),
+               "f_y": self.multiQuadDerY(s, y, radius), "f_xx": self.multiQuadDerXX(s, y, radius),
+               "f_yy": self.multiQuadDerYY(s, x, radius)}
+
+        temp = val[chars[0]]
+        temp_op = ''
+        for char in chars[1:]:
+            if char in operators:
+                temp_op = char
+                continue
+            else:
+                temp = op[temp_op](temp, val[char])
+
+        return temp
+
+    def recalculate_weights(self, r: float, ode: str):
         self.method = getattr(self, self.kernel_str)
 
-        self.pairs = torch.stack([arg.ravel() for arg in self.v]).T
+        self.radius = r
 
-        self.phi_matrix = torch.stack(
-            [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
+        boundary_matrix = torch.stack([self.method(torch.linalg.vector_norm(pos - self.pairs, dim=1), self.radius)
+                                       for pos in self.boundary])
+        internal_matrix = torch.stack([self.derivative_operator(ode, torch.linalg.vector_norm(pos - self.pairs, dim=1),
+                                                                self.radius,
+                                                                x=pos[0] - torch.stack([pos[0] for pos in self.pairs]),
+                                                                y=pos[1] - torch.stack([pos[1] for pos in self.pairs]))
+                                       for pos in self.inner])
+
+        internal_matrix = torch.squeeze(internal_matrix)  # Why does it have to be negative?
+
+        self.phi_matrix = torch.cat((boundary_matrix, internal_matrix))
+
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f_vector)
 
     def interpolate(self, *x: torch.tensor):

@@ -63,7 +63,7 @@ class Interpolator(object):
 
 
 class InterpolatorPDE(object):
-    def __init__(self, kernel_str: str, *x: torch.tensor, f: torch.tensor, r: float, boundary: torch.tensor, ode: str):
+    def __init__(self, kernel_str: str, *x: torch.tensor, f: torch.tensor, r: float, boundary: torch.tensor, inner: torch.tensor, ode: str):
         self.kernel_str = kernel_str
         self.method = getattr(self, kernel_str)
         self.ode = ode
@@ -73,16 +73,20 @@ class InterpolatorPDE(object):
         self.x = x
         self.pairs = torch.stack([arg.ravel() for arg in x]).T
         self.boundary = boundary
+        self.inner = inner
 
         self.f_vector = f.ravel()
 
         boundary_matrix = torch.stack([self.method(torch.linalg.vector_norm(pos - self.pairs, dim=1), self.radius)
-                                       for pos in self.pairs if pos in self.boundary])
+                                       for pos in self.boundary])
         internal_matrix = torch.stack([self.derivative_operator(ode, pos - self.pairs, self.radius)
-                                       for pos in self.pairs if pos not in self.boundary])
+                                       for pos in self.inner])
         internal_matrix = torch.squeeze(internal_matrix)  # Why does it have to be negative?
 
         self.phi_matrix = torch.cat((boundary_matrix, internal_matrix))
+
+        print(self.phi_matrix.shape)
+        print(self.f_vector.shape)
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f_vector)
 
     @staticmethod

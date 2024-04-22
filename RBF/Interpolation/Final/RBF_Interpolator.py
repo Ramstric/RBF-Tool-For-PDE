@@ -117,6 +117,7 @@ class RBFInterpolator3D(object):
 
         self.phi_matrix = torch.stack(
             [self.method(torch.linalg.vector_norm(self.pairs - pos, dim=1), self.radius) for pos in self.pairs])
+
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, self.f_vector)
 
     @staticmethod

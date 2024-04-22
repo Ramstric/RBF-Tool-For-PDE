@@ -36,7 +36,7 @@ y_0 = torch.cat((y_B, y_I), dim=0)                  # Making the Vector Y (Bound
 # --------------------------------[ Interpolación ]--------------------------------
 x_1 = torch.linspace(0, 24, 100, device=device)
 
-interpolator = RBF.InterpolatorPDE("multiQuad", x_0, f=y_0, r=1.6, boundary=x_B, ode="y'' - y'")
+interpolator = RBF.InterpolatorPDE("multiQuad", x_0, f=y_0, r=1.6, boundary=x_B, inner=x_I, ode="y'' - y'")
 y_RBF = interpolator.interpolate(x_1)
 
 print(interpolator.interpolate(torch.tensor([15.], device=device)))
