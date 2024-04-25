@@ -78,6 +78,7 @@ class InterpolatorPDE(object):
 
         boundary_matrix = torch.stack([self.method(torch.linalg.vector_norm(pos - self.pairs, dim=1), self.radius)
                                        for pos in self.boundary])
+
         internal_matrix = torch.stack([self.derivative_operator(ode, torch.linalg.vector_norm(pos - self.pairs, dim=1),
                                        self.radius, x=pos[0] - torch.stack([pos[0] for pos in self.pairs]),
                                        y=pos[1] - torch.stack([pos[1] for pos in self.pairs])) for pos in self.inner])
