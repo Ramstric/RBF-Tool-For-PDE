@@ -93,11 +93,17 @@ class InterpolatorPDE(object):
     def gaussian(x: torch.tensor, radius: float):
         return e ** (-(radius * x)**2)
 
-    def gaussianDerivative(self, x: torch.tensor, radius: float):
-        return (-2*x*radius**2) * self.gaussian(x, radius)
+    def gaussianDerX(self, s: torch.tensor, x: torch.tensor, radius: float):
+        return (-2*x*radius**2) * self.gaussian(s, radius)
 
-    def gaussianSecondDerivative(self, x: torch.tensor, radius: float):
-        return (-2*radius**2)*(-2*(radius*x)**2 * self.gaussian(x, radius) + self.gaussian(x, radius))
+    def gaussianDerXX(self, s: torch.tensor, x: torch.tensor, radius: float):
+        return (-2*radius**2) * ((-2*(x*radius)**2) * self.gaussian(s, radius) + self.gaussian(s, radius))
+
+    def gaussianDerY(self, s: torch.tensor, y: torch.tensor, radius: float):
+        return (-2 * y * radius ** 2) * self.gaussian(s, radius)
+
+    def gaussianDerYY(self, s: torch.tensor, y: torch.tensor, radius: float):
+        return (-2 * radius ** 2) * ((-2 * (y * radius) ** 2) * self.gaussian(s, radius) + self.gaussian(s, radius))
 
     @staticmethod
     def multiQuad(x: torch.tensor, radius: float):
@@ -117,16 +123,16 @@ class InterpolatorPDE(object):
 
     def derivative_operator(self, operation: str, s: torch.tensor, radius: float, x: torch.tensor, y: torch.tensor):
 
-        #return self.multiQuadDerX(s, x, radius) + self.multiQuadDerY(s, y, radius)
+        return self.gaussianDerY(s, y, radius) - 0.3*self.gaussianDerXX(s, x, radius)
 
         chars = operation.split()
         operators = chars[1::2]
 
         # Operators
         op = {'+': lambda a, b: a + b, '-': lambda a, b: a - b}
-        val = {"f": self.method(s, radius), "f_x": self.multiQuadDerX(s, x, radius),
-               "f_y": self.multiQuadDerY(s, y, radius), "f_xx": self.multiQuadDerXX(s, y, radius),
-               "f_yy": self.multiQuadDerYY(s, x, radius)}
+        val = {"f": self.method(s, radius), "f_x": self.gaussianDerX(s, x, radius),
+               "f_y": self.gaussianDerY(s, y, radius), "f_xx": self.gaussianDerXX(s, x, radius),
+               "f_yy": self.gaussianDerYY(s, y, radius)}
 
         temp = val[chars[0]]
         temp_op = ''

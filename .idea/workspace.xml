@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Thats it... PDEs...">
-      <change afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/Third example.py" afterDir="false" />
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Three variable PDE test.">
+      <change afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/Heat equation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/animation_drawing.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/RBF.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/RBF.py" afterDir="false" />
     </list>
@@ -76,10 +77,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindowPlots.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Partial Differential Equations/Second revision/Third example.py",
+    "last_opened_file_path": "C:/Users/progr/PycharmProjects/pythonCIC/RBF/Partial Differential Equations/Second revision/Heat equation.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,7 +115,7 @@
       <recent name="C:\Users\progr\PycharmProjects\pythonCIC\RBF\Differential Equations" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Current">
+  <component name="RunManager">
     <configuration name="Current" type="PythonConfigurationType" factoryName="Python">
       <module name="pythonCIC" />
       <option name="ENV_FILES" value="" />
@@ -129,7 +131,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/Third example.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RBF/Partial Differential Equations/Second revision/Heat equation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -283,7 +285,8 @@
       <workItem from="1713690502181" duration="21343000" />
       <workItem from="1713752448118" duration="3517000" />
       <workItem from="1713959573632" duration="18000" />
-      <workItem from="1714007674698" duration="8863000" />
+      <workItem from="1714007674698" duration="9766000" />
+      <workItem from="1714100227813" duration="13784000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -469,7 +472,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713787269707</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Three variable PDE test.">
+      <option name="closed" value="true" />
+      <created>1714046667591</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1714046667591</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +524,8 @@
     <MESSAGE value="Animations and moar..." />
     <MESSAGE value="Finally, some ODE magic!!!" />
     <MESSAGE value="Thats it... PDEs..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Thats it... PDEs..." />
+    <MESSAGE value="Three variable PDE test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Three variable PDE test." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -556,7 +568,7 @@
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch_3D.coverage" NAME="RBF Torch 3D Coverage Results" MODIFIED="1713168604961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$Finite_Dif_1.coverage" NAME="Finite Dif 1 Coverage Results" MODIFIED="1699653097133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FiniteDifferences" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation_2nd.coverage" NAME="RBF Interpolation 2nd Coverage Results" MODIFIED="1712418216787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Second revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$Current.coverage" NAME="Current Coverage Results" MODIFIED="1714013470019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/pythonCIC$Current.coverage" NAME="Current Coverage Results" MODIFIED="1714118528678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_ODE__Colocación_Asimétrica_sin_Def__Positiva_.coverage" NAME="RBF ODE (Colocación Asimétrica sin Def. Positiva) Coverage Results" MODIFIED="1713519673924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Differential Equations/First revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch.coverage" NAME="RBF Torch Coverage Results" MODIFIED="1712559015605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1713511040200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
