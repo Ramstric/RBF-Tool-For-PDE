@@ -123,15 +123,13 @@ class InterpolatorPDE(object):
 
     def derivative_operator(self, operation: str, s: torch.tensor, radius: float, x: torch.tensor, y: torch.tensor):
 
-        return self.gaussianDerY(s, y, radius) - 0.3*self.gaussianDerXX(s, x, radius)
-
         chars = operation.split()
         operators = chars[1::2]
 
         # Operators
         op = {'+': lambda a, b: a + b, '-': lambda a, b: a - b}
         val = {"f": self.method(s, radius), "f_x": self.gaussianDerX(s, x, radius),
-               "f_y": self.gaussianDerY(s, y, radius), "f_xx": self.gaussianDerXX(s, x, radius),
+               "f_y": self.gaussianDerY(s, y, radius), "f_xx": 0.3*self.gaussianDerXX(s, x, radius),
                "f_yy": self.gaussianDerYY(s, y, radius)}
 
         temp = val[chars[0]]

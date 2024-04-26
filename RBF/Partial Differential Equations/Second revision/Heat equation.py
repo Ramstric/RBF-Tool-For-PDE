@@ -101,7 +101,7 @@ z_RBF = interpolator.interpolate(x_RBF, y_RBF)
 #z_RBF = z_RBF+0.001
 
 # --------------------------------[ Plotting ]--------------------------------
-
+fig = plt.figure()
 ax = plt.axes(projection="3d")
 surf = ax.plot_surface(x_RBF.cpu().detach().numpy(), y_RBF.cpu().detach().numpy(), z_RBF.cpu().detach().numpy(),
                        cmap=cm.inferno, antialiased=True, alpha=0.6)
