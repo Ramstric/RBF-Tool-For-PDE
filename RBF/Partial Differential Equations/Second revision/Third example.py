@@ -75,28 +75,8 @@ boundary, inner, pairs, f = pairs3D(x, y, z)
 interpolator = RBF.InterpolatorPDE("multiQuad", boundary=boundary, inner=inner, all=pairs, f=f, r=1, ode="f_xx + f_yy")
 
 # --------------------------------[ Interpolación ]--------------------------------
-step = 200
 
-x_RBF = torch.linspace(0, 1, step, device=device)
-y_RBF = torch.linspace(0, 1, step, device=device)
-x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
-
-z_RBF = interpolator.interpolate(x_RBF, y_RBF)
-
-#z_RBF = z_RBF+0.001
-
-# --------------------------------[ Plotting ]--------------------------------
-fig = plt.figure()
-ax = plt.axes(projection="3d")
-surf = ax.plot_surface(x_RBF.cpu().detach().numpy(), y_RBF.cpu().detach().numpy(), z_RBF.cpu().detach().numpy(),
-                       cmap=cm.bone, antialiased=True, alpha=0.6)
-
-
-ax.xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
-ax.yaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
-ax.zaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
-
-#ax.view_init(azim=20)
+print(interpolator.interpolate(torch.tensor([0.5, 0.5, 0.5], device=device)))  # Interpolating for three var PDE
 
 plt.show()
 

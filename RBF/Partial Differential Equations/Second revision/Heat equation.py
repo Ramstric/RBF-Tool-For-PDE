@@ -86,7 +86,17 @@ size = x.size(0)
 
 boundary, inner, pairs, z = pairs3D(x, y)
 
-interpolator = RBF.InterpolatorPDE("gaussian", boundary=boundary, inner=inner, all=pairs, f=z, r=5, ode="f_y - f_xx")
+# Change f_xx coefficient for heat dissipation
+interpolator = RBF.InterpolatorPDE("gaussian", boundary=boundary, inner=inner, all=pairs, f=z, r=5, pde="f_y - f_xx")
+
+
+# Define custom derivative operator for PDE problem
+def PDE(operation: str, s: torch.tensor, radius: float, x: torch.tensor, y: torch.tensor):
+    return interpolator.gaussianDerY(s, y, radius) - 0.2*interpolator.gaussianDerXX(s, x, radius)
+
+
+interpolator.derivative_operator = PDE
+interpolator.recalculate_weights(r=5, pde="f_y - f_xx")
 
 # --------------------------------[ Interpolación ]--------------------------------
 
@@ -157,7 +167,7 @@ plt.show()
 """
 
 # --------------------------------[ Animating ]--------------------------------
-
+"""
 fig, ax = plt.subplots(1, 1)
 
 step = 200
@@ -191,6 +201,7 @@ writer_video = animation.PillowWriter(fps=60)
 ani.save('./animation_drawing.gif', writer=writer_video)
 
 print("Animation saved!")
+"""
 
 if device.type == 'cuda':
     print("\n")

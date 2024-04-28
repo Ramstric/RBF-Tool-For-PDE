@@ -67,7 +67,7 @@ size = x.size(0)
 
 boundary, inner, pairs, z = pairs3D(x, y)
 
-interpolator = RBF.InterpolatorPDE("multiQuad", boundary=boundary, inner=inner, all=pairs, f=z, r=0.8, ode="f_xx + f_yy")
+interpolator = RBF.InterpolatorPDE("gaussian", boundary=boundary, inner=inner, all=pairs, f=z, r=3, ode="f_xx + f_yy")
 
 # --------------------------------[ Interpolación ]--------------------------------
 step = 200
@@ -77,6 +77,8 @@ y_RBF = torch.linspace(0, 1, step, device=device)
 x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
 
 z_RBF = interpolator.interpolate(x_RBF, y_RBF)
+
+print(interpolator.interpolate(torch.tensor([0.315], device=device), torch.tensor([0.415], device=device)))
 
 #z_RBF = z_RBF+0.001
 
