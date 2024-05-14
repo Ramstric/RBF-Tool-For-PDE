@@ -36,7 +36,7 @@ class InterpolatorPDE(object):
 
     def derivative_operator(self, operation: str, s: torch.tensor, radius: float, x: torch.tensor, y: torch.tensor, t: torch.tensor):
 
-        return RadialBasisFunction.gaussian_t(s, t, radius) - 0.3*(RadialBasisFunction.gaussian_xx(s, x, radius) + RadialBasisFunction.gaussian_yy(s, y, radius))
+        return RadialBasisFunction.gaussian_t(s, t, radius) - 2*(RadialBasisFunction.gaussian_xx(s, x, radius) + RadialBasisFunction.gaussian_yy(s, y, radius))
 
         # Math operators dictionary
         op = {'+': lambda a, b: a + b, '-': lambda a, b: a - b}

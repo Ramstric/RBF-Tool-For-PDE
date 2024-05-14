@@ -130,7 +130,7 @@ def pairs3D(x_tensor: torch.tensor, y_tensor: torch.tensor, t_tensor: torch.tens
     x_in = torch.stack([pos[0] for pos in pairs_inner])
     y_in = torch.stack([pos[1] for pos in pairs_inner])
     t_in = torch.stack([pos[2] for pos in pairs_inner])
-    z_in = torch.full((x_in.size(0),), 1, device=device)  # <--- (Function of PDE)
+    z_in = torch.full((x_in.size(0),), 0., device=device)  # <--- (Function of PDE)
 
     # All points in vector form
     x_all = torch.cat((x_outer, x_in), 0)
@@ -151,7 +151,7 @@ y = torch.linspace(0, 1, t.size(0), device=device)
 
 boundary, inner, pairs, z = pairs3D(x, y, t)
 
-interpolator = PDE_Interpolation.InterpolatorPDE("gaussian", boundary=boundary, inner=inner, all_pairs=pairs, f=z, r=4, pde="f_t - 0.3f_xx - 0.3f_yy")
+interpolator = PDE_Interpolation.InterpolatorPDE("gaussian", boundary=boundary, inner=inner, all_pairs=pairs, f=z, r=5, pde="f_t - 0.3f_xx - 0.3f_yy")
 
 
 #Define custom derivative operator for PDE problem
@@ -203,7 +203,7 @@ ax.xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
 ax.yaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
 ax.zaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
 
-ax.view_init(elev=90, azim=-90)
+#ax.view_init(elev=90, azim=-90)
 
 
 def animate(i):
@@ -211,7 +211,7 @@ def animate(i):
 
     x_RBF = torch.linspace(0, 1, step, device=device)
     y_RBF = torch.linspace(0, 1, step, device=device)
-    t_RBF = torch.tensor([i/1000], device=device)
+    t_RBF = torch.tensor([i/100], device=device)
     x_RBF, y_RBF, t_RBF = torch.meshgrid(x_RBF, y_RBF, t_RBF, indexing='xy')
 
     z_RBF = interpolator.interpolate(x_RBF, y_RBF, t_RBF)
