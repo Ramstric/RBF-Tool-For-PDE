@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Solved heat equation on a 2D Plate, RBF module for handling derivatives and a better representation of the heat equation on a metal rod.">
+    <list default="true" id="7c697a51-a460-40cb-8964-75a6ef854eeb" name="Changes" comment="Heat equation changes...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RBF/Interpolation/RBF Interpolation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Interpolation/RBF Interpolation.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RBF/Partial Differential Equations/Fourth revision/Heat equation (2D Plate).py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Fourth revision/Heat equation (2D Plate).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RBF/Partial Differential Equations/Fourth revision/PDE_Interpolation.py" beforeDir="false" afterPath="$PROJECT_DIR$/RBF/Partial Differential Equations/Fourth revision/PDE_Interpolation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +82,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/progr/PycharmProjects/pythonCIC/RBF/Partial Differential Equations/Fourth revision/Heat equation (2D Plate).py&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/progr/Desktop&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -292,6 +292,15 @@
       <workItem from="1714120513706" duration="257000" />
       <workItem from="1714182612800" duration="36372000" />
       <workItem from="1714277996920" duration="4783000" />
+      <workItem from="1715687272582" duration="139000" />
+      <workItem from="1715954786162" duration="7427000" />
+      <workItem from="1716623568743" duration="2887000" />
+      <workItem from="1716626603331" duration="1489000" />
+      <workItem from="1716628129112" duration="533000" />
+      <workItem from="1716633856330" duration="22000" />
+      <workItem from="1718402210903" duration="1434000" />
+      <workItem from="1718503466072" duration="27000" />
+      <workItem from="1718503663888" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="RBF Interpolation and revision of previous programs">
       <option name="closed" value="true" />
@@ -501,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714120537742</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Heat equation changes...">
+      <option name="closed" value="true" />
+      <created>1715687403594</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1715687403594</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,7 +565,8 @@
     <MESSAGE value="Three variable PDE test." />
     <MESSAGE value="Heat equation solved!" />
     <MESSAGE value="Some refactoring..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some refactoring..." />
+    <MESSAGE value="Heat equation changes..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Heat equation changes..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -591,7 +609,7 @@
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch_3D.coverage" NAME="RBF Torch 3D Coverage Results" MODIFIED="1713168604961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$Finite_Dif_1.coverage" NAME="Finite Dif 1 Coverage Results" MODIFIED="1699653097133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FiniteDifferences" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolation_2nd.coverage" NAME="RBF Interpolation 2nd Coverage Results" MODIFIED="1712418216787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Second revision" />
-    <SUITE FILE_PATH="coverage/pythonCIC$Current.coverage" NAME="Current Coverage Results" MODIFIED="1714290814512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/pythonCIC$Current.coverage" NAME="Current Coverage Results" MODIFIED="1715969132670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_ODE__Colocación_Asimétrica_sin_Def__Positiva_.coverage" NAME="RBF ODE (Colocación Asimétrica sin Def. Positiva) Coverage Results" MODIFIED="1713519673924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Differential Equations/First revision" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Torch.coverage" NAME="RBF Torch Coverage Results" MODIFIED="1712559015605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />
     <SUITE FILE_PATH="coverage/pythonCIC$RBF_Interpolator.coverage" NAME="RBF_Interpolator Coverage Results" MODIFIED="1713511040200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RBF/Interpolation/Final" />

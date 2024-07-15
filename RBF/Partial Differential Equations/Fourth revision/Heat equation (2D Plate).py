@@ -140,7 +140,7 @@ def pairs3D(x_tensor: torch.tensor, y_tensor: torch.tensor, t_tensor: torch.tens
 
     pairs_all = torch.stack([x_all.ravel(), y_all.ravel(), t_all.ravel()]).T  # To obtain them pairs in order
 
-    return pairs_outer, pairs_inner, pairs_all, z_all
+    return pairs_outer, pairs_inner, pairs_all, z_all, x_in, y_in, z_in, x_outer, y_outer, z_outer
 
 
 # All points
@@ -149,7 +149,7 @@ x = torch.linspace(0, 1, t.size(0), device=device)
 y = torch.linspace(0, 1, t.size(0), device=device)
 
 
-boundary, inner, pairs, z = pairs3D(x, y, t)
+boundary, inner, pairs, z, x_i, y_i, z_i, x_o, y_o, z_o = pairs3D(x, y, t)
 
 interpolator = PDE_Interpolation.InterpolatorPDE("gaussian", boundary=boundary, inner=inner, all_pairs=pairs, f=z, r=5, pde="f_t - 0.3f_xx - 0.3f_yy")
 
@@ -163,23 +163,24 @@ interpolator = PDE_Interpolation.InterpolatorPDE("gaussian", boundary=boundary, 
 #interpolator.recalculate_weights(r=5, pde="f_y - f_xx")
 
 # --------------------------------[ Interpolación ]--------------------------------
-"""
+
 step = 50
 
-x_RBF = torch.linspace(0, 1, step, device=device)
-y_RBF = torch.linspace(0, 1, step, device=device)
+#x_RBF = torch.linspace(0, 1, step, device=device)
+#y_RBF = torch.linspace(0, 1, step, device=device)
 #t_RBF = torch.linspace(0, 1, step, device=device)
-t_RBF = torch.tensor([0.01], device=device)
-x_RBF, y_RBF, t_RBF = torch.meshgrid(x_RBF, y_RBF, t_RBF, indexing='xy')
+#t_RBF = torch.tensor([0.01], device=device)
+#x_RBF, y_RBF, t_RBF = torch.meshgrid(x_RBF, y_RBF, t_RBF, indexing='xy')
 
-z_RBF = interpolator.interpolate(x_RBF, y_RBF, t_RBF)
+#z_RBF = interpolator.interpolate(x_RBF, y_RBF, t_RBF)
 
-x_RBF = torch.squeeze(x_RBF)
-y_RBF = torch.squeeze(y_RBF)
-z_RBF = torch.squeeze(z_RBF)
+#x_RBF = torch.squeeze(x_RBF)
+#y_RBF = torch.squeeze(y_RBF)
+#z_RBF = torch.squeeze(z_RBF)
 
 fig = plt.figure()
 ax = plt.axes(projection="3d")
+ax.view_init(elev=90, azim=-90)
 
 ax.xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
 ax.yaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
@@ -187,10 +188,15 @@ ax.zaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
 
 #ax.view_init(elev=90, azim=-90)
 
+ax.zaxis.line.set_lw(0.)
+ax.set_zticks([])
 ax.set_zlim(0, 0.25)
 
-ax.plot_surface(x_RBF.cpu().detach().numpy(), y_RBF.cpu().detach().numpy(), z_RBF.cpu().detach().numpy(),
-                    cmap=cm.inferno, antialiased=True, alpha=0.6, vmin=0, vmax=0.25)
+ax.scatter(x_o.cpu().detach().numpy(), y_o.cpu().detach().numpy(), z_o.cpu().detach().numpy(),
+                    color=custom_colors["Blue"], antialiased=True, alpha=0.6, vmin=0, vmax=0.25)
+
+ax.scatter(x_i.cpu().detach().numpy(), y_i.cpu().detach().numpy(), z_i.cpu().detach().numpy(),
+                    color=custom_colors[3], antialiased=True, alpha=0.6, vmin=0, vmax=0.25)
 
 plt.show()
 
@@ -237,8 +243,10 @@ writer_video = animation.PillowWriter(fps=60)
 ani.save('./animation_drawing.gif', writer=writer_video)
 
 print("Animation saved!")
-
+"""
 # --------------------------------[ Memory management ]--------------------------------
+
+
 
 if device.type == 'cuda':
     print("\n")
