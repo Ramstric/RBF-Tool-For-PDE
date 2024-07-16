@@ -1,6 +1,5 @@
 import torch
 import RBF_Interpolator
-import numpy as np
 
 import matplotlib.pyplot as plt
 import matplotx
@@ -9,7 +8,6 @@ from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.colors import ListedColormap
 import matplotlib.animation as animation
 import os
-from mpl_toolkits.mplot3d import Axes3D
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
