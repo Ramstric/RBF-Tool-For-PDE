@@ -50,14 +50,14 @@ def thin_plate_spline(x, x_j, r):
 
 
 # Smoothing parameter
-sigma = 1.0
+sigma = 0.5
 
 # Measured data
 time = np.array([1, 2, 3, 4, 5, 6])
 temperatura = np.array([20, 18, 23, 22, 21, 19])
 
 # RBF to use
-RBF = multiquadric
+RBF = gaussian
 
 # Weights interpolation
 omega = np.linalg.solve(np.array([RBF(time, pos, sigma) for pos in time]).T, temperatura)
@@ -67,6 +67,8 @@ omega = np.linalg.solve(np.array([RBF(time, pos, sigma) for pos in time]).T, tem
 fig = go.Figure()
 
 pair = list(zip(time, omega))
+
+print(pair)
 
 #RBFs plots
 for (t, w) in pair:

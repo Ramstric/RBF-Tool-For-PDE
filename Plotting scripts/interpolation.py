@@ -92,6 +92,7 @@ fig.add_annotation(x=x_interpolation[26]+0.05,
                    opacity=1,
                    bgcolor='#191919')
 
+
 fig.add_annotation(x=time[4]-0.01,
                    y=temperatura[4]-0.4,
                    text="Tabulated point",
@@ -103,6 +104,7 @@ fig.add_annotation(x=time[4]-0.01,
                    opacity=1,
                    bgcolor='#191919')
 
+
 fig.update_layout(template=custom)
 fig.update_layout(font=dict(size=16), title=dict(font=dict(size=28)), xaxis_title="Time", yaxis_title="Temperature")
 fig.update_layout(yaxis_range=[0, 24], xaxis_range=[0, 7])
@@ -110,5 +112,5 @@ fig.update_layout(yaxis_range=[0, 24], xaxis_range=[0, 7])
 fig.update_layout(xaxis_ticksuffix=" s", yaxis_ticksuffix=" °C")
 
 fig.data = (fig.data[2], fig.data[1], fig.data[0])
-
+fig.show()
 fig.write_image("interpolation.png", scale=2)
