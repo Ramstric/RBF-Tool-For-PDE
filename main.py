@@ -1,63 +1,34 @@
-import marimo
+import torch
 
-__generated_with = "0.1.0"
-app = marimo.App()
+from RBF.Interpolator import Interpolator
 
+from Templates.atom_dark_colors import colors
+from Templates.custom_plotly import custom
+import plotly.graph_objects as go
 
-@app.cell
-def __(mo):
-    mo.md("# Plotting a Sine Wave")
-    return
+#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+# Smoothing parameter
+sigma = 1
 
-@app.cell
-def __(mo, np):
-    period = mo.ui.slider(start=np.pi, stop=2*np.pi, label="period")
-    amplitude = mo.ui.slider(start=1, stop=2, step=0.1, label="amplitude")
+# Measured data
+x = torch.linspace(-5, 5, 10)
+y = torch.linspace(-5, 5, 10)
+x, y = torch.meshgrid(x, y, indexing='xy')
 
-    [period, amplitude]
-    return amplitude, period
+z = torch.sin(torch.sqrt(x**2 + y**2))
 
+interpolator = Interpolator(x, y, f=z, radius=sigma, rbf_name="multiquadric")
 
-@app.cell
-def __(amplitude, mo, period):
-    mo.md(
-        rf"""
-        Here's a plot of
-        $f(x) = {amplitude.value:.02f}\sin((2\pi/{period.value:.02f}) x)$:
-        """
-    )
-    return
+# Interpolation
+x_RBF = torch.linspace(-5, 5, 30)
+y_RBF = torch.linspace(-5, 5, 30)
+x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
 
+z_RBF = interpolator.interpolate(x_RBF, y_RBF)
 
-@app.cell
-def __(amplitude, period, plot_sine_wave):
-    plot_sine_wave(period.value, amplitude.value)
-    return
+fig = go.Figure(data=[go.Surface(z=z_RBF, x=x_RBF, y=y_RBF)])
 
+fig.update_layout(template=custom, font_size=10)
 
-@app.cell
-def __(np, plt):
-    def plot_sine_wave(period, amplitude):
-        x = np.linspace(0, 2*np.pi, num=100)
-        plt.figure(figsize=(6.7, 2.5))
-        plt.plot(x, amplitude*np.sin(x*2*np.pi / period))
-        plt.xlabel('$x$')
-        plt.xlim(0, 2*np.pi)
-        plt.ylim(-2, 2)
-        plt.tight_layout()
-        return plt.gca()
-    return plot_sine_wave,
-
-
-@app.cell
-def __():
-    import marimo as mo
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    return mo, np, plt
-
-
-if __name__ == "__main__":
-    app.run()
+fig.show()
