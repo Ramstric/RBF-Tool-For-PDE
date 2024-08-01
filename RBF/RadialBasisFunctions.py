@@ -7,7 +7,7 @@ def gaussian(r: torch.Tensor, radius: float):
 
 
 def gaussian_derivative(r, radius):
-    return - r * gaussian(r, radius) / (2 * radius**2)
+    return - r * gaussian(r, radius) / (radius**2)
 
 
 # Partial Derivatives
@@ -31,6 +31,10 @@ def multiquadric(r: torch.Tensor, radius: float):
 
 def multiquadric_derivative(r: torch.Tensor, radius: float):
     return r / multiquadric(r, radius)
+
+
+def multiquadric_second_derivative(r: torch.Tensor, radius: float):
+    return radius**2 / (multiquadric(r, radius) * (r**2 + radius**2))
 
 
 # Partial Derivatives

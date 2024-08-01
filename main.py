@@ -1,34 +1,63 @@
 import torch
 
-from RBF.Interpolator import Interpolator
-
 from Templates.atom_dark_colors import colors
 from Templates.custom_plotly import custom
 import plotly.graph_objects as go
+from RBF import DifferentialEquationSolver as DESolver
+from RBF import RadialBasisFunctions as RBF
 
-#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+torch.set_default_dtype(torch.float64)
+
+
+def ode(t):
+    return t - 7.5 + 10 / (t + 0.2)
+
+
+def solution(t):
+    return 10 * torch.log(t + 0.2) + 0.5 * t ** 2 - 7.5 * t + 25
+
 
 # Smoothing parameter
-sigma = 1
+sigma = 2
 
 # Measured data
-x = torch.linspace(-5, 5, 10)
-y = torch.linspace(-5, 5, 10)
-x, y = torch.meshgrid(x, y, indexing='xy')
+initial_time = torch.tensor([0])
+initial_temperature = torch.tensor([8.905])
 
-z = torch.sin(torch.sqrt(x**2 + y**2))
+post_time = torch.arange(0.1, 6.1, 0.1)
+post_temperature = ode(post_time)
 
-interpolator = Interpolator(x, y, f=z, radius=sigma, rbf_name="multiquadric")
+time = torch.cat((initial_time, post_time))
+temperature = torch.cat((initial_temperature, post_temperature))
 
-# Interpolation
-x_RBF = torch.linspace(-5, 5, 30)
-y_RBF = torch.linspace(-5, 5, 30)
-x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
+derivative_operator = RBF.multiquadric_derivative
 
-z_RBF = interpolator.interpolate(x_RBF, y_RBF)
+fig = go.Figure()
 
-fig = go.Figure(data=[go.Surface(z=z_RBF, x=x_RBF, y=y_RBF)])
+DEInterpolator = DESolver.DifferentialInterpolator(time, boundary=initial_time, inner=post_time, f=temperature,
+                                                   radius=sigma, rbf_name="multiquadric",
+                                                   derivative_operator=derivative_operator)
 
-fig.update_layout(template=custom, font_size=10)
+# Interpolated data
+time_interpol = torch.linspace(0, 6, 60)
+temperature_interpol = DEInterpolator.interpolate(time_interpol)
+
+temperature_exact = solution(time_interpol)
+
+# Original data plot
+fig.add_trace(
+    go.Scatter(x=time_interpol, y=temperature_exact, mode="lines",
+               line=dict(color=colors["LightGray"], width=0.75),
+               showlegend=True, name="Exact solution"))
+
+# Interpolated data plot
+fig.add_trace(
+    go.Scatter(x=time_interpol, y=temperature_interpol, mode="lines",
+               line=dict(color=colors["Red"], width=0.75),
+               showlegend=True, name="Interpolated solution"))
+
+fig.update_layout(template=custom)
+fig.update_layout(yaxis_range=[0, 24], xaxis_range=[0, 6], font=dict(size=16), title=dict(font=dict(size=28)),
+                  xaxis_title="Time", yaxis_title="Temperature", xaxis_ticksuffix=" s", yaxis_ticksuffix=" °C", )
 
 fig.show()

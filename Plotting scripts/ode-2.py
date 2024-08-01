@@ -2,6 +2,7 @@ import numpy as np
 import plotly.express as px
 import pandas as pd
 import plotly.io as pio
+import torch
 import plotly.graph_objects as go
 from math import log10, floor
 
@@ -88,20 +89,33 @@ dRBF = multiquadric_derivative
 initial_time = np.array([0])
 initial_temperature = np.array([8.905])
 
-post_time = np.arange(0.1, 9.1, 0.1)
+post_time = np.arange(0.1, 6.1, 0.1)
 post_temperature = ODE(post_time)
 
 time = np.concatenate((initial_time, post_time))
 temperature = np.concatenate((initial_temperature, post_temperature))
 
 # Matrices for the RBF interpolation
-boundary = np.array([RBF(pos, time, sigma) for pos in initial_time])
-interior = np.array([dRBF(pos, time, sigma) for pos in post_time])
+#boundary = np.array([RBF(pos, time, sigma) for pos in initial_time])
+#interior = np.array([dRBF(pos, time, sigma) for pos in post_time])
+
+boundary = np.array([RBF(initial_time, pos, sigma) for pos in time]).T
+interior = np.array([dRBF(post_time, pos, sigma) for pos in time]).T
+
 
 matrix = np.concatenate((boundary, interior))
 
 # Weights interpolation
 omega = np.linalg.solve(matrix, temperature)
+
+#print(omega)
+
+omega_torch = torch.linalg.solve(torch.from_numpy(matrix), torch.from_numpy(temperature))
+
+print(omega)
+print(omega_torch)
+
+#print(omega_torch.numpy())
 
 #fig = px.line(df, x="x", y=["gaussian", "multiquadric", "inverse_multiquadric", "thin_plate_spline"], color_discrete_sequence=[custom_colors["Blue"], custom_colors["Orange"], custom_colors["Green"], custom_colors["Purple"]])
 
@@ -126,7 +140,6 @@ temperature_exact = solution(time_interpol)
 error = np.square(np.subtract(temperature_exact, temperature_interpol)).mean()
 error_string = "{:.2e}".format(error).split("e")
 error_string = f"{error_string[0]} \\times 10^{{{error_string[1]}}}"
-print(error_string)
 # Title of the plot
 fig.update_layout(
     title_text=f"$\\Large{{ \\text{{Para }} {len(time)} \\text{{ puntos y suavizado }}\\sigma = {sigma} }}$",
@@ -167,5 +180,6 @@ fig.update_layout(font=dict(size=16), title=dict(font=dict(size=28)), xaxis_titl
                   xaxis_dtick=1, xaxis_ticksuffix=" s", yaxis_ticksuffix=" °C",
                   legend=dict(x=0.97, xanchor="right", y=0.975, traceorder="normal", font_size=12, bgcolor='#222222', bordercolor='#434343', borderwidth=0.5))
 
-fig.write_html("./ode-2.html", include_plotlyjs=False)
-fig.write_image("ode-2.png", scale=2)
+#fig.write_html("./ode-2.html", include_plotlyjs=False)
+#fig.write_image("ode-2.png", scale=2)
+fig.show()

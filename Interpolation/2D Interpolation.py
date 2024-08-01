@@ -6,6 +6,8 @@ from Templates.atom_dark_colors import colors
 from Templates.custom_plotly import custom
 import plotly.graph_objects as go
 
+#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 # Smoothing parameter
 sigma = 1
 
@@ -19,6 +21,7 @@ interpolator = Interpolator(time, f=temperatura, radius=sigma, rbf_name="gaussia
 time_interpolation = torch.linspace(1, 6, 48)
 temperatura_interpolation = interpolator.interpolate(time_interpolation)
 
+# Plotting
 fig = go.Figure()
 
 # Interpolated data plot
@@ -32,7 +35,7 @@ fig.add_trace(
                showlegend=False))
 
 fig.update_layout(template=custom)
-fig.update_layout(xaxis_range=[0, 9], yaxis_range=[0, 24],
+fig.update_layout(xaxis_range=[0, 7], yaxis_range=[0, 24],
                   xaxis_title="Time", yaxis_title="Temperature",
                   xaxis_ticksuffix=" s", yaxis_ticksuffix=" °C",
                   xaxis_dtick=1)

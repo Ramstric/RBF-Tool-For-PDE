@@ -18,17 +18,18 @@ x, y = torch.meshgrid(x, y, indexing='xy')
 
 z = torch.sin(torch.sqrt(x**2 + y**2))
 
-interpolator = Interpolator(x, y, f=z, radius=sigma, rbf_name="multiquadric")
+interpolator = Interpolator(x, y, f=z, radius=sigma, rbf_name="gaussian")
 
-# Interpolation
-x_RBF = torch.linspace(-5, 5, 30)
-y_RBF = torch.linspace(-5, 5, 30)
+# Interpolated data
+x_RBF = torch.linspace(-5, 5, 40)
+y_RBF = torch.linspace(-5, 5, 40)
 x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
 
 z_RBF = interpolator.interpolate(x_RBF, y_RBF)
 
-fig = go.Figure(data=[go.Surface(z=z_RBF, x=x_RBF, y=y_RBF)])
+# Plotting
+fig = go.Figure(data=[go.Surface(z=z_RBF, x=x_RBF, y=y_RBF, colorscale="dense_r")])
 
-fig.update_layout(template=custom, font_size=10)
+fig.update_layout(template=custom, font_size=12)
 
 fig.show()
