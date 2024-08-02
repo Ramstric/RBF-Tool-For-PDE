@@ -2,8 +2,8 @@ import torch
 from math import e
 
 
-def gaussian(x: torch.tensor, radius: float):
-    return e ** (-(radius * x) ** 2)
+def gaussian(r: torch.tensor, radius: float):
+    return e ** (-(radius * r) ** 2)
 
 
 def gaussian_t(s: torch.tensor, t: torch.tensor, radius: float):

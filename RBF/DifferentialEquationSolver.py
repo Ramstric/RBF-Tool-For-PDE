@@ -3,27 +3,32 @@ from RBF import RadialBasisFunctions
 
 
 class DifferentialInterpolator(object):
-    def __init__(self, *r: torch.Tensor, boundary: torch.Tensor, inner: torch.Tensor, f: torch.Tensor, radius: float, rbf_name: str, derivative_operator):
+    def __init__(self, boundary: list[torch.Tensor], inner: list[torch.Tensor], f: torch.Tensor, radius: float, rbf_name: str, derivative_operator):
         self.rbf = getattr(RadialBasisFunctions, rbf_name)
 
         self.radius = radius
 
+        self.boundary = torch.stack([var.ravel() for var in boundary]).T
+        self.inner = torch.stack([var.ravel() for var in inner]).T
+
         # Data points, from meshgrid to pairs of coordinates [x, y, z, ...]
-        self.center_points = torch.stack([var.ravel() for var in r]).T
+        self.center_points = torch.cat((self.boundary, self.inner))
 
-        self.boundary = boundary
-        self.inner = inner
-
-        # Distance r = ||x - x_i|| between the data points and the rbf centers
-        self.boundary_distances = torch.stack([x - self.center_points for x in boundary])
-        self.boundary_distances = torch.linalg.norm(self.boundary_distances, dim=2)
-
-        self.inner_distances = torch.stack([x - self.center_points for x in inner])
-        #self.inner_distances = torch.linalg.norm(self.inner_distances, dim=2)
-        self.inner_distances = torch.squeeze(self.inner_distances)
+        # Distance r = ||(x, y, z, ...) - (x_i, y_i, z_i, ...)||
+        # between the boundary/inner points and the rbf centers (all points)
+        self.boundary_vectors = torch.stack([x - self.center_points for x in self.boundary])
+        self.boundary_distances = torch.linalg.norm(self.boundary_vectors, dim=2)
 
         boundary_matrix = self.rbf(self.boundary_distances, self.radius)
-        internal_matrix = derivative_operator(self.inner_distances, self.radius)
+
+        self.inner_vectors = torch.stack([x - self.center_points for x in self.inner])
+
+        if len(boundary) and len(inner) == 1:
+            self.inner_distances = torch.squeeze(self.inner_vectors)
+            internal_matrix = derivative_operator(self.inner_distances, self.radius)
+        else:
+            self.inner_distances = torch.linalg.norm(self.inner_vectors, dim=2)
+            internal_matrix = derivative_operator(self.inner_distances, self.radius, variables=[var.T for var in self.inner_vectors.T])
 
         self.phi_matrix = torch.cat((boundary_matrix, internal_matrix))
 

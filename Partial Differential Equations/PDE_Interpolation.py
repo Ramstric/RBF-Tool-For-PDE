@@ -1,6 +1,6 @@
 import torch
 from math import e
-import RadialBasisFunctions as RadialBasisFunction
+import RadialBasisFunctions_old as RadialBasisFunction
 import re
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -36,7 +36,7 @@ derivative_operator = rbf.multiquadric_derivative
 
 fig = go.Figure()
 
-DEInterpolator = DESolver.DifferentialInterpolator(time, boundary=initial_time, inner=post_time, f=temperature,
+DEInterpolator = DESolver.DifferentialInterpolator(boundary=[initial_time], inner=[post_time], f=temperature,
                                                    radius=sigma, rbf_name="multiquadric",
                                                    derivative_operator=derivative_operator)
 
