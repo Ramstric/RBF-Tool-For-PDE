@@ -1,15 +1,18 @@
 import numpy as np
 import torch
 
-from Templates.custom_plotly import custom
+from templates.custom_plotly import custom
 import plotly.graph_objects as go
 
 
 def ode(i, j):
-    if j == 0 or j == 20:
-        return 50.
+    if i == 0 and j < 7:
+        return 4*np.sin(0.5*j)
 
-    elif i == 0:
+    elif i == 0 and j >= 7:
+        return 0.
+
+    elif j == 20 or j == 0:
         return 0.
 
     else:
@@ -34,7 +37,7 @@ dirichlet_x = x[indices[:, 0], indices[:, 1]]
 dirichlet_time = time[indices[:, 0], indices[:, 1]]
 dirichlet_u = u[indices[:, 0], indices[:, 1]]
 
-indices = np.argwhere(u == 0)
+indices = np.argwhere(u != 0.5)
 
 initial_x = x[indices[:, 0], indices[:, 1]]
 initial_time = time[indices[:, 0], indices[:, 1]]

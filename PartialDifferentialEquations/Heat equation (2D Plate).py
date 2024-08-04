@@ -240,7 +240,7 @@ def animate(i):
 ani = animation.FuncAnimation(fig, animate, 100, interval=500)
 
 writer_video = animation.PillowWriter(fps=60)
-ani.save('./2D Interpolation.gif', writer=writer_video)
+ani.save('./2D interpolation.gif', writer=writer_video)
 
 print("Animation saved!")
 """

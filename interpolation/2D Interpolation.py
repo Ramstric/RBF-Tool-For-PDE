@@ -2,8 +2,8 @@ import torch
 
 from RBF.Interpolator import Interpolator
 
-from Templates.atom_dark_colors import colors
-from Templates.custom_plotly import custom
+from templates.atom_dark_colors import colors
+from templates.custom_plotly import custom
 import plotly.graph_objects as go
 
 #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
