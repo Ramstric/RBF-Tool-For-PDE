@@ -38,7 +38,7 @@ The tools provided are in the scripts:
 ### Interpolator
 
 ```python
-class Interpolator(*r: torch.Tensor, f: torch.Tensor, radius: float, rbf_name: str):
+class Interpolator(*r: torch.Tensor, f: torch.Tensor, radius: float, rbf_name: str)
 ```
 
 A simple interpolator using Radial Basis Functions.
@@ -58,7 +58,10 @@ A simple interpolator using Radial Basis Functions.
 ### DifferentialEquationSolver
 
 ```python
-class DifferentialInterpolator(boundary: list[torch.Tensor], inner: list[torch.Tensor], f: torch.Tensor, radius: float, rbf_name: str, derivative_operator)
+class DifferentialInterpolator(boundary: list[torch.Tensor], 
+                               inner: list[torch.Tensor], 
+                               f: torch.Tensor, radius: float, 
+                               rbf_name: str, derivative_operator)
 ```
 
 An implementation of the RBF Collocation method for solving PDEs.
@@ -118,9 +121,10 @@ Note why the order of the variables is important.
 4. Create an instance of the `DifferentialEquationSolver` class with its parameters.
 
 ```python
-from RBF import DifferentialEquationSolver
+from RBF import DifferentialEquationSolver as DESolver
 
-DEInterpolator = DifferentialEquationSolver.DifferentialInterpolator(boundary=[boundary_x, boundary_time], inner=[inner_x, inner_time],
+DEInterpolator = DESolver.DifferentialInterpolator(boundary=[boundary_x, boundary_time],
+                                                   inner=[inner_x, inner_time],
                                                    f=u, radius=0.2, rbf_name="multiquadric",
                                                    derivative_operator=derivative_operator)
 ```
@@ -131,3 +135,5 @@ DEInterpolator = DifferentialEquationSolver.DifferentialInterpolator(boundary=[b
 ```python
 u_interpolated = DEInterpolator.interpolate(x_interpolated, time_interpolated)
 ```
+
+Please refer to the examples in the `OrdinaryDifferentialEquations` and `PartialDifferentialEquations` folders.
