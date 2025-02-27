@@ -31,7 +31,7 @@ class DifferentialInterpolator(object):
             internal_matrix = derivative_operator(self.inner_distances, self.radius, variables=[var.T for var in self.inner_vectors.T])
 
         self.phi_matrix = torch.cat((boundary_matrix, internal_matrix))
-
+        print(torch.linalg.cond(self.phi_matrix))
         # Weights interpolation
         self.weights_matrix = torch.linalg.solve(self.phi_matrix, f.ravel())
 
