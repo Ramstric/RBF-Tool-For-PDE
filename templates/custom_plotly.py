@@ -26,6 +26,13 @@ custom.layout.font.size = 16
 custom.layout.title.font.size = 28
 
 custom.layout.legend.font.size = 12
+custom.layout.legend.grouptitlefont = dict(size=16)
 custom.layout.legend.bgcolor = '#222222'
 custom.layout.legend.bordercolor = '#434343'
-custom.layout.legend.borderwidth = 0.5
+custom.layout.legend.borderwidth = 0.25
+custom.layout.legend.orientation = 'h'
+custom.layout.legend.yanchor="top"
+custom.layout.legend.y=0.99
+custom.layout.legend.xanchor="center"
+custom.layout.legend.x=0.5
+custom.layout.legend.groupclick="toggleitem"
