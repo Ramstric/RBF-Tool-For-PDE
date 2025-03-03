@@ -1,66 +1,46 @@
-import torch
+import numpy as np
 
-from RBF.Interpolator import Interpolator
+# Example points (x, y)
+points = np.array([
+    [0.0, 0.0],
+    [1.0, 0.0],
+    [0.5, 1.0],
+    [0.0, 1.0],
+    [1.0, 1.0],
+    [0.2, 0.5],
+    [0.8, 0.5],
+    # ... more points
+])
 
-from templates.atom_dark_colors import colors
-from templates.custom_plotly import custom
-import plotly.graph_objects as go
+from scipy.spatial.distance import cdist
 
-#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def find_stencil(target_point, all_points, stencil_size):
+    """Finds the nearest neighbors for a target point."""
+    distances = cdist([target_point], all_points)[0]  # Calculate distances
+    nearest_indices = np.argsort(distances)[:stencil_size] #Get the indices of the closest points
+    return all_points[nearest_indices]
 
-# Analytical solution
-def analytical_solution(_x, _y):
-    # List of 3D functions
-    return 5 + 3*_x + 0.15*_x**2 + 3*_y + 0.15*_y**2 # 3D Paraboloid
-    #return torch.sin(torch.sqrt(_x**2 + _y**2)) # 3D Vortex
-    #return torch.sin(_x) * torch.sin(_y) # 3D Saddle
+# Example usage:
+target_point = np.array([0.5, 0.5])
+stencil_size = 5
+stencil = find_stencil(target_point, points, stencil_size)
 
-# Polynomial matrix
-def polynomial_matrix(num_points, variables=None):
-    # For this code variables are [x, y] in that order
-    _x = variables[0]
-    _y = variables[1]
-    return torch.cat((torch.ones((num_points, 1)), _x, _y, _x**2, _x*_y, _y**2), dim=1) # torch.cat( [1, x, y, x^2, xy, y^2], dim=1)
+print("Target point:", target_point)
+print("Stencil points:\n", stencil)
 
-# Measured data
-x = torch.linspace(-5, 5, 20)
-y = torch.linspace(-5, 5, 20)
-x, y = torch.meshgrid(x, y, indexing='xy')
-z = analytical_solution(x, y)
+import matplotlib.pyplot as plt
 
-k = 2 # RBF parameter
-interpolator = Interpolator(x, y, f=z, rbf_name="polyharmonic_spline", rbf_parameter=k, polynomial_matrix=polynomial_matrix)
+def visualize_stencil(target_point, stencil, all_points):
+    """Visualizes the stencil."""
+    plt.figure(figsize=(6, 6))
+    plt.scatter(all_points[:, 0], all_points[:, 1], label="All Points")
+    plt.scatter(target_point[0], target_point[1], color="red", label="Target Point")
+    plt.scatter(stencil[:, 0], stencil[:, 1], color="green", label="Stencil Points")
+    plt.legend()
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title("Stencil Visualization")
+    plt.grid(True)
+    plt.show()
 
-# Domain discretization for interpolation
-x_RBF = torch.linspace(-5, 5, 40)
-y_RBF = torch.linspace(-5, 5, 40)
-x_RBF, y_RBF = torch.meshgrid(x_RBF, y_RBF, indexing='xy')
-z_analytical = analytical_solution(x_RBF, y_RBF) # Analytical solution
-z_RBF = interpolator.interpolate(x_RBF, y_RBF) # Interpolated data
-
-# RMSE
-rmse = torch.sqrt(torch.mean((z_RBF - analytical_solution(x_RBF, y_RBF))**2))
-print(f"RMSE: {rmse}")
-
-# Plotting
-fig = go.Figure()
-
-# Analytical data surface
-fig.add_trace(go.Surface(z=z_analytical, x=x_RBF, y=y_RBF,
-                         colorscale=[colors["Red"], colors["Red"]], opacity=0.5,
-                         name="Analytical", showlegend=True, showscale=False))
-
-# Interpolated data surface
-fig.add_trace(go.Surface(z=z_RBF, x=x_RBF, y=y_RBF,
-                         colorscale="turbid", opacity=0.75,
-                         name="Interpolated", showlegend=True, showscale=False))
-
-# Measured data markers
-fig.add_trace(go.Scatter3d(x=x.flatten(), y=y.flatten(), z=z.flatten(),
-                           mode="markers", marker=dict(color=colors["Red"], size=2, symbol="circle"),
-                           name="Data markers", showlegend=True))
-
-fig.update_layout(template=custom, font_size=10, scene=dict(aspectmode="cube"),
-                  scene_xaxis_title="X", scene_yaxis_title="Y", scene_zaxis_title="Z")
-
-fig.show()
+visualize_stencil(target_point, stencil, points)
